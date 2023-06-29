@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="yurii.romanenko.shpp.ProfileActivity">
+
+    <View
+        android:id="@+id/bottombackground"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:background="@color/background"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/photo_profile"
+        android:layout_width="122dp"
+        android:layout_height="122dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/yr_photo"
+        app:layout_constraintBottom_toTopOf="@+id/text_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/bottombackground"
+        app:layout_constraintTop_toTopOf="@+id/bottombackground"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_name"
+        app:layout_constraintBottom_toBottomOf="@+id/bottombackground"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/photo_profile" />
+
+    <TextView
+        android:id="@+id/text_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:padding="@dimen/padding"
+        android:text="@string/settings"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_name"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/position"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text_size_position"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_name"
+
+        />
+
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/address"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text_size_position"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/position"
+
+        />
+
+    <Button
+        android:id="@+id/button_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding"
+        android:layout_marginEnd="@dimen/padding"
+        android:layout_marginBottom="@dimen/padding"
+        android:background="@drawable/yr_button_view"
+        android:padding="@dimen/padding"
+        android:text="@string/view_my_contacts"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_position"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding"
+        android:layout_marginEnd="@dimen/padding"
+        android:layout_marginBottom="@dimen/padding"
+        android:background="@drawable/yr_button_edit_selector"
+        android:onClick="onTestButtonClick"
+        android:padding="@dimen/padding"
+        android:text="@string/edit_profile"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_position"
+        app:layout_constraintBottom_toTopOf="@id/button_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+
+    <Button
+        android:id="@+id/button_fb"
+        android:contentDescription="Facebook"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="@dimen/padding"
+        android:background="@drawable/yr_fb_button"
+        app:layout_constraintBottom_toTopOf="@id/button_edit"
+        app:layout_constraintEnd_toStartOf="@id/button_lin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bottombackground"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button_inst"
+        android:contentDescription="Instagram"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:layout_marginEnd="@dimen/padding"
+        android:background="@drawable/yr_inst_button"
+        app:layout_constraintBottom_toTopOf="@id/button_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/button_lin"
+        app:layout_constraintTop_toBottomOf="@+id/bottombackground"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button_lin"
+        android:contentDescription="LinkedIn"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:background="@drawable/yr_lin_button"
+        app:layout_constraintBottom_toTopOf="@id/button_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bottombackground"
+        tools:ignore="MissingConstraints" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
