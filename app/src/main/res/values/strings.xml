@@ -11,4 +11,11 @@
     <string name="fill_out_the_profile_and_go_to_the_application">Fill out the profile and go to the application!</string>
     <string name="register_you_agree_terms">By clicking Register you agree to our Terms and Conditions</string>
     <string name="already_have_account">Already have an account? Sign in</string>
+    <string name="remember_me">Remember me</string>
+    <string name="errorPass">pass must create word \"love\"</string>
+    <string name="or">or</string>
+    <string name="sign_in">Sign in</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="password">Password</string>
+    <string name="example_email">For example: tom.kruz@mail.com</string>
 </resources>

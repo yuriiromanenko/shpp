@@ -7,11 +7,13 @@
     tools:context="yurii.romanenko.shpp.ProfileActivity">
 
     <View
-        android:id="@+id/bottombackground"
+        android:id="@+id/bottomBackground"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        android:background="@color/background"
-        tools:ignore="MissingConstraints" />
+        android:layout_height="300dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/photo_profile"
@@ -19,10 +21,11 @@
         android:layout_height="122dp"
         android:scaleType="centerCrop"
         android:src="@drawable/yr_photo"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/text_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/bottombackground"
-        app:layout_constraintTop_toTopOf="@+id/bottombackground"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="100dp"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -33,10 +36,9 @@
         android:text="@string/name"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_name"
-        app:layout_constraintBottom_toBottomOf="@+id/bottombackground"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/photo_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/photo_profile" />
 
     <TextView
         android:id="@+id/text_settings"
@@ -85,7 +87,7 @@
         android:layout_marginStart="@dimen/padding"
         android:layout_marginEnd="@dimen/padding"
         android:layout_marginBottom="@dimen/padding"
-        android:background="@drawable/yr_button_view"
+        android:background="@drawable/yr_orange_button"
         android:padding="@dimen/padding"
         android:text="@string/view_my_contacts"
         android:textColor="@color/white"
@@ -103,7 +105,7 @@
         android:layout_marginStart="@dimen/padding"
         android:layout_marginEnd="@dimen/padding"
         android:layout_marginBottom="@dimen/padding"
-        android:background="@drawable/yr_button_edit_selector"
+        android:background="@drawable/yr_white_button"
         android:onClick="onTestButtonClick"
         android:padding="@dimen/padding"
         android:text="@string/edit_profile"
@@ -118,41 +120,40 @@
 
     <Button
         android:id="@+id/button_fb"
-        android:contentDescription="Facebook"
         android:layout_width="66dp"
         android:layout_height="66dp"
         android:layout_marginStart="@dimen/padding"
         android:background="@drawable/yr_fb_button"
-        app:layout_constraintBottom_toTopOf="@id/button_edit"
+        android:contentDescription="Facebook"
+        app:layout_constraintBottom_toBottomOf="@+id/button_lin"
         app:layout_constraintEnd_toStartOf="@id/button_lin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bottombackground"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button_inst"
-        android:contentDescription="Instagram"
         android:layout_width="66dp"
         android:layout_height="66dp"
         android:layout_marginEnd="@dimen/padding"
         android:background="@drawable/yr_inst_button"
-        app:layout_constraintBottom_toTopOf="@id/button_edit"
+        android:contentDescription="Instagram"
+        app:layout_constraintBottom_toBottomOf="@+id/button_lin"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.633"
         app:layout_constraintStart_toEndOf="@id/button_lin"
-        app:layout_constraintTop_toBottomOf="@+id/bottombackground"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button_lin"
-        android:contentDescription="LinkedIn"
         android:layout_width="66dp"
         android:layout_height="66dp"
         android:background="@drawable/yr_lin_button"
+        android:contentDescription="LinkedIn"
+        android:layout_marginBottom="@dimen/_22dp"
         app:layout_constraintBottom_toTopOf="@id/button_edit"
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bottombackground"
         tools:ignore="MissingConstraints" />
 
 
