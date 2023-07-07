@@ -25,8 +25,8 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     fun onTestButtonClick(view: View) {
-        val nextIntent = Intent(this, AuthActivity::class.java)
-        startActivity(nextIntent)
+        val authActivityIntent = Intent(this, AuthActivity::class.java)
+        startActivity(authActivityIntent)
     }
 
 

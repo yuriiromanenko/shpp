@@ -14,76 +14,88 @@ class AuthActivity : AppCompatActivity() {
     private lateinit var binding: AuthLayoutBinding
     private var email by notNull<String>()
     private var pass by notNull<String>()
+    private var emailValid: Boolean = false
+    private var passwordValid: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = AuthLayoutBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
-        binding.textEditEmail.doOnTextChanged { text, start, before, count ->
-            if ((!text!!.contains('@')) || (!text.contains('.'))  ) {
-                binding.textEditEmail.error = "This is NOT email"
-            } else {
-                binding.textEditEmail.error = null
-            }
-        }
 
-        binding.textEditPass.doOnTextChanged { text, start, before, count ->
-            if (!text!!.contains("Love")) {
-                binding.textInputPasswordLayout.error = "Password must contain word 'Love'"
-            } else {
-                binding.textInputPasswordLayout.error = null
-            }
-        }
-
+        emailCheck()
+        passwordCheck()
 
         binding.buttonRegister.setOnClickListener() { clickButtonRegister() }
-
-//        pass = binding.textInputPasswordLayout.editText?.text.toString()
-//        email = binding.textInputEmail.editText?.text.toString()
-//        Log.d("TESTLOG", "Pass: $pass")
-//        Log.d("TESTLOG", "Email: $email")
+     //   renderState()
     }
 
-    private fun passLogic() {
-
+    private fun passwordCheck() {
+        binding.textEditPass.doOnTextChanged { text, start, before, count ->
+            passwordValid = text!!.contains("Love")
+            if (passwordValid) {
+                binding.textInputPasswordLayout.error = null
+            } else {
+                binding.textInputPasswordLayout.error = "Password must contain word 'Love'"
+            }
+        }
     }
 
-    private fun emailLogic() {
-
+    private fun emailCheck() {
+        binding.textEditEmail.doOnTextChanged { text, start, before, count ->
+            emailValid = (text!!.contains('@')) && (text.contains('.'))
+            if (emailValid) {
+                binding.textEditEmail.error = null
+            } else {
+                binding.textEditEmail.error = "email NOT valid"
+            }
+        }
     }
 
     private fun clickButtonRegister() {
-
         val intent = Intent(this, ProfileActivity::class.java)
-        intent.putExtra("text_name", "Test Testovich")
-        startActivity(intent)
+        email = binding.textEditEmail.text.toString()
+        pass = binding.textEditPass.text.toString()
+        Log.d("TESTLOG", "Click REGISTER: $email")
+        if (!emailValid) {
+            Toast.makeText(this, "Email '$email' is not valid", Toast.LENGTH_SHORT).show()
+        } else if (!passwordValid) {
+            Toast.makeText(this, "Password '$pass' is not valid", Toast.LENGTH_SHORT).show()
+        } else {
+            intent.putExtra("text_name", parseEmailToName(email))
+            renderState()
+            startActivity(intent)
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        // outState.putString(email, email) // TODO: What write this?
+      //  email = binding.textEditEmail.text.toString()
+        outState.putString(KEY_EMAIL, email)
+        outState.putString(KEY_PASS, pass)
+        renderState()
     }
 
-    private fun pass() {
-        val pass = binding.textInputPasswordLayout.editText.toString()
-        println(pass)
-
-        if (!pass.contains("Love") && pass.isEmpty()) {
-            binding.textInputPasswordLayout.error = "Password must contain word 'Love' "
-        }
+    private fun parseEmailToName(email: String): String {
+        var secondName: String = email.substringBefore('@')
+        var firstName: String = secondName.substringBefore('.').capitalize()
+        return firstName + " " + secondName.substringAfter('.').capitalize()
     }
 
-    private fun parseEmail() {
-        val pass = binding.textInputPasswordLayout.editText.toString()
-        TODO("Not yet implemented")
-        Toast.makeText(this, pass, Toast.LENGTH_SHORT).show()
+    fun renderState() = with(binding) {
+        textEditEmail.setText(email)
+        textEditPass.setText(pass)
     }
 
+    companion object {
+        @JvmStatic
+        private val KEY_EMAIL = "EMAIL"
 
-//    fun onTestButtonClick(view: View) {
-//        val intent = Intent(this, ProfileActivity::class.java)
-//        startActivity(intent)
-//    }
+        @JvmStatic
+        private val KEY_PASS = "PASS"
+    }
 }
+
+
+
 
