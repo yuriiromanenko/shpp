@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="yurii.romanenko.shpp.ProfileActivity">
+    android:orientation="vertical"
+    >
 
     <View
         android:id="@+id/bottomBackground"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">YR</string>
+    <string name="app_name" translatable="false">YR</string>
     <string name="name">Yurii Romanenko</string>
     <string name="position">Android Developer</string>
     <string name="address">Ukraine, Kiyv 04216</string>
