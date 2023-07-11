@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">YR</string>
+    <string name="app_name" translatable="false">AAA</string>
     <string name="name">Yurii Romanenko</string>
     <string name="position">Android Developer</string>
     <string name="address">Ukraine, Kiyv 04216</string>
@@ -18,4 +18,6 @@
     <string name="already_have_an_account">Already have an account?</string>
     <string name="password">Password</string>
     <string name="example_email">For example: tom.kruz@mail.com</string>
+    <string name="email">Email</string>
+    <string name="let_s_get_acquainted">Let\'s get acquainted</string>
 </resources>

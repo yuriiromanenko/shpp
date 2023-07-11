@@ -1,6 +1,8 @@
 package yurii.romanenko.shpp
 
+import android.app.ActivityOptions
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -16,11 +18,11 @@ class AuthActivity : AppCompatActivity() {
     private var pass by notNull<String>()
     private var emailValid: Boolean = false
     private var passwordValid: Boolean = false
+    private lateinit var settings : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = AuthLayoutBinding.inflate(layoutInflater).also { setContentView(it.root) }
-
 
         emailCheck()
         passwordCheck()
@@ -53,6 +55,7 @@ class AuthActivity : AppCompatActivity() {
 
     private fun clickButtonRegister() {
         val intent = Intent(this, ProfileActivity::class.java)
+        val optionTransitionAnimation = ActivityOptions.makeSceneTransitionAnimation(this)
         email = binding.textEditEmail.text.toString()
         pass = binding.textEditPass.text.toString()
         Log.d("TESTLOG", "Click REGISTER: $email")
@@ -61,9 +64,10 @@ class AuthActivity : AppCompatActivity() {
         } else if (!passwordValid) {
             Toast.makeText(this, "Password '$pass' is not valid", Toast.LENGTH_SHORT).show()
         } else {
+            startActivity(intent, optionTransitionAnimation.toBundle())
+
             intent.putExtra("text_name", parseEmailToName(email))
-            renderState()
-            startActivity(intent)
+         //   renderState()
         }
     }
 
@@ -71,9 +75,9 @@ class AuthActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
 
       //  email = binding.textEditEmail.text.toString()
-        outState.putString(KEY_EMAIL, email)
-        outState.putString(KEY_PASS, pass)
-        renderState()
+//        outState.putString(KEY_EMAIL, email)
+//        outState.putString(KEY_PASS, pass)
+//        renderState()
     }
 
     private fun parseEmailToName(email: String): String {
@@ -82,18 +86,18 @@ class AuthActivity : AppCompatActivity() {
         return firstName + " " + secondName.substringAfter('.').capitalize()
     }
 
-    fun renderState() = with(binding) {
-        textEditEmail.setText(email)
-        textEditPass.setText(pass)
-    }
-
-    companion object {
-        @JvmStatic
-        private val KEY_EMAIL = "EMAIL"
-
-        @JvmStatic
-        private val KEY_PASS = "PASS"
-    }
+//    fun renderState() = with(binding) {
+//        textEditEmail.setText(email)
+//        textEditPass.setText(pass)
+//    }
+//
+//    companion object {
+//        @JvmStatic
+//        private val KEY_EMAIL = "EMAIL"
+//
+//        @JvmStatic
+//        private val KEY_PASS = "PASS"
+//    }
 }
 
 

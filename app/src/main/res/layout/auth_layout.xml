@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:animateLayoutChanges="true"
+
     android:orientation="vertical"
     android:layout_height="match_parent">
 
@@ -23,7 +24,7 @@
             android:id="@+id/textEditEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:textSize="@dimen/text_size_position" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -37,7 +38,6 @@
         app:errorEnabled="true"
         app:helperText="@string/password"
         app:helperTextEnabled="true"
-        app:hintTextAppearance="@style/OrangeText"
         app:layout_constraintBottom_toTopOf="@id/checkBox_remember_me"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,20 +48,12 @@
             android:id="@+id/textEditPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:textSize="@dimen/text_size_position"
 
             />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <!--    <View-->
-    <!--        android:id="@+id/background"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:background="@color/background"-->
-    <!--        tools:ignore="MissingConstraints" />-->
-
 
     <Button
         android:id="@+id/button_google"
@@ -78,7 +70,9 @@
         app:layout_constraintBottom_toTopOf="@+id/button_register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox_remember_me"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/button_register"
@@ -91,7 +85,6 @@
         android:background="@drawable/yr_dark_button"
         android:padding="@dimen/padding"
         android:text="@string/register"
-        android:textColor="@color/white"
         android:textSize="@dimen/text_size_position"
         app:layout_constraintBottom_toBottomOf="@id/register_you_agree_terms"
         app:layout_constraintEnd_toEndOf="parent"
@@ -107,8 +100,6 @@
         android:layout_marginBottom="8dp"
         android:text="@string/register_you_agree_terms"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@id/Already_have_account"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_register" />
@@ -119,34 +110,36 @@
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         android:text="@string/remember_me"
-        android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="@id/textInputPasswordLayout"
         app:layout_constraintStart_toStartOf="@id/textInputPasswordLayout"
-        app:layout_constraintTop_toBottomOf="@id/textInputPasswordLayout" />
+        app:layout_constraintTop_toBottomOf="@id/textInputPasswordLayout"
+        app:layout_constraintBottom_toTopOf="@id/button_google"
+        />
 
     <TextView
         android:id="@+id/Lets_get"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="111dp"
-        android:text="Let's get acquainted"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="@dimen/padding"
+        android:layout_marginStart="@dimen/padding"
+        android:paddingStart="@dimen/padding"
+        android:text="@string/let_s_get_acquainted"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="35dp"
+        android:textSize="@dimen/text_size_big"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/fill_out_profile"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginEnd="@dimen/padding"
+        android:layout_marginStart="@dimen/padding"
         android:text="@string/fill_out_the_profile_and_go_to_the_application"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Lets_get" />
@@ -173,7 +166,7 @@
         android:id="@+id/Already_have_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/_22dp"
+        android:layout_marginEnd="@dimen/_22dp"
         android:layout_marginBottom="@dimen/_22dp"
         android:text="@string/already_have_an_account"
         app:layout_constraintBottom_toBottomOf="parent"
