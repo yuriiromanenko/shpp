@@ -1,0 +1,23 @@
+<resources>
+    <string name="name">Yurii Romanenko</string>
+    <string name="position">Android Developer</string>
+    <string name="address">Україна, Kиїв, 04216</string>
+    <string name="settings">Налаштування</string>
+    <string name="view_my_contacts">мої контакти</string>
+    <string name="edit_profile">Редагувати профіль</string>
+    <string name="register">РЕГІСТРАЦІЯ</string>
+
+    <string name="fill_out_the_profile_and_go_to_the_application">Заповнюйте анкету та переходьте до заявки!</string>
+    <string name="register_you_agree_terms">Натиснувши РЕГІСТРАЦІЯ Ви погоджуєтесь з нашими правилами</string>
+    <string name="already_have_account">Маєш аккаунт? Заходь!</string>
+    <string name="remember_me">памятати мене</string>
+<!--    todo як написати апостроф?  -->
+    <string name="errorPass">Пароль має буди зі словом \"love\"</string>
+    <string name="or">чи</string>
+    <string name="sign_in">Увійдіть</string>
+    <string name="already_have_an_account">Вже маєте обліковий запис?</string>
+    <string name="password">Пароль</string>
+    <string name="example_email">Наприклад: tom.kruz@mail.com</string>
+    <string name="email">Пошта</string>
+    <string name="let_s_get_acquainted">Давайте познайомимося</string>
+</resources>

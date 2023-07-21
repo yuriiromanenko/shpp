@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+
+
+    <style name="YR_Theme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowEnterTransition">@android:transition/fade</item>
+        <item name="android:windowExitTransition">@android:transition/fade</item>
+        <item name="hintTextColor">@color/orange</item>
+        <item name="colorAccent">@color/orange</item>
+    </style>
+
+</resources>
+
+
+
