@@ -3,7 +3,6 @@ package yurii.romanenko.shpp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.TextView
 import kotlin.properties.Delegates
 
@@ -20,11 +19,11 @@ class ProfileActivity : AppCompatActivity() {
 
         name = intent.getStringExtra("text_name").toString()
 
-        textView.setText(name)
+        textView.text = name
 
     }
 
-    fun onTestButtonClick(view: View) {
+    fun onTestButtonClick() {
         val authActivityIntent = Intent(this, AuthActivity::class.java)
         startActivity(authActivityIntent)
     }
