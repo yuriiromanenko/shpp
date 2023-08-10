@@ -5,21 +5,23 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import yurii.romanenko.shpp.databinding.AuthLayoutBinding
+import yurii.romanenko.shpp.ext.firstCharToUpper
 import java.util.Locale
 import kotlin.properties.Delegates.notNull
 
 class AuthActivity : AppCompatActivity() {
 
-    private lateinit var binding: AuthLayoutBinding
-    private var email by notNull<String>()  // = "yuri.romanenko@mail.com"//
+    private val binding: AuthLayoutBinding by lazy {
+        AuthLayoutBinding.inflate(layoutInflater)
+    }
+    private var email: String = ""  // = "yuri.romanenko@mail.com"// // TODO: why not Null?
     private var password by notNull<String>()   //  = "KotlinMyLov"  //
-    private var emailValid: Boolean = false
-    private var passwordValid: Boolean = false
 
     private val userPreferences: UserPreferences by lazy {
         UserPreferences(applicationContext.dataStore)
@@ -29,14 +31,20 @@ class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = AuthLayoutBinding.inflate(layoutInflater).also { setContentView(it.root) }
-
+        setContentView(binding.root)
         loadUser()
+        validateInputs()
+        setListeners()
 
+    }
+
+    private fun setListeners() {
+        binding.buttonRegister.setOnClickListener { clickButtonRegister() }
+    }
+
+    private fun validateInputs() {
         emailCheck()
         passwordCheck()
-
-        binding.buttonRegister.setOnClickListener { clickButtonRegister() }
     }
 
     private fun loadUser() {
@@ -44,7 +52,7 @@ class AuthActivity : AppCompatActivity() {
             userPreferences.emailFlow.collect { savedEmail ->
                 savedEmail?.let {
                     email = it
-                    binding.textEditEmail.setText(email)
+                    binding.textEditEmail.setText(it)
                 }
             }
         }
@@ -61,65 +69,50 @@ class AuthActivity : AppCompatActivity() {
 
 
     private fun passwordCheck() {
-        binding.textEditPass.doOnTextChanged { text, _, _, _ ->
-            passwordValid = text!!.contains("Love")
-            if (passwordValid) {
+        binding.textEditEmail.doOnTextChanged { text, _, _, _ ->
+            if (text.toString().contains("Love")) {  // TODO: Love?
                 binding.textInputPasswordLayout.error = null
             } else {
-                binding.textInputPasswordLayout.error = "Password must contain word 'Love'"
+                binding.textInputPasswordLayout.error = "Password must contain word 'Love'" // TODO: to Constants
             }
         }
     }
 
     private fun emailCheck() {
         binding.textEditEmail.doOnTextChanged { text, _, _, _ ->
-            emailValid = (text!!.contains('@')) && (text.contains('.'))
-            if (emailValid) {
-                binding.textEditEmail.error = null
+            binding.textEditEmail.error = if (Validation.isValidEmail(text.toString())) {
+                 null
             } else {
-                binding.textEditEmail.error = "email NOT valid"
+                "email NOT valid" // TODO: to res
             }
         }
     }
 
     private fun clickButtonRegister() {
-        val intentProfileActivity = Intent(this, ProfileActivity::class.java)
+
+        val intent = Intent(this, ProfileActivity::class.java)
         val optionTransitionAnimation = ActivityOptions.makeSceneTransitionAnimation(this)
-        val rememberMeIsChecked: Boolean = binding.checkBoxRememberMe.isChecked
-        email = binding.textEditEmail.text.toString()
-        password = binding.textEditPass.text.toString()
-        Log.d("TEST_LOG", "Click REGISTER: $email")
-        if (!emailValid) {
+
+        if (!Validation.isValidEmail(binding.textEditEmail.text.toString())) {
             Toast.makeText(this, "Email '$email' is not valid", Toast.LENGTH_SHORT).show()
-        } else if (!passwordValid) {
+        } else if (!Validation.isValidPassword(binding.textEditPass.text.toString())) {
             Toast.makeText(this, "Password '$password' is not valid", Toast.LENGTH_SHORT).show()
         } else {
-            if (rememberMeIsChecked) {
-
+            if (binding.checkBoxRememberMe.isChecked) {
                 if (email.isNotEmpty() && password.isNotEmpty()) {
                     lifecycleScope.launch {
-                        userPreferences.saveEmail(email)
-                    }
-                    lifecycleScope.launch {
-                        userPreferences.savePass(password)
+                         userPreferences.saveEmail(email)
+                         userPreferences.savePass(password)
                     }
                 }
             }
-
-            intentProfileActivity.putExtra("text_name", parseEmailToName(email))
-            startActivity(intentProfileActivity, optionTransitionAnimation.toBundle())
-
+            intent.putExtra("text_name", binding.textEditEmail.text.toString()) // TODO: to constants
+            startActivity(intent, optionTransitionAnimation.toBundle())
         }
     }
 
 
-    private fun parseEmailToName(email: String): String {
-        val secondName: String = email.substringBefore('@')
-        val firstName: String = secondName.substringBefore('.')
-            .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
-        return "$firstName " + secondName.substringAfter('.')
-            .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
-    }
+
 
 }
 

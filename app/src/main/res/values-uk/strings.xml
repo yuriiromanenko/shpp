@@ -12,7 +12,7 @@
     <string name="already_have_account">Маєш аккаунт? Заходь!</string>
     <string name="remember_me">памятати мене</string>
 <!--    todo як написати апостроф?  -->
-    <string name="errorPass">Пароль має буди зі словом \"love\"</string>
+    <string name="errorPass">Пароль має буди зі словом \"Love\" "</string>
     <string name="or">чи</string>
     <string name="sign_in">Увійдіть</string>
     <string name="already_have_an_account">Вже маєте обліковий запис?</string>

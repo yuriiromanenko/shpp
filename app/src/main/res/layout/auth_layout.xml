@@ -3,22 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewLets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding"
+        android:layout_marginTop="@dimen/padding"
+        android:layout_marginEnd="@dimen/padding"
+        android:text="@string/let_s_get_acquainted"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size_big"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        app:startIconDrawable="@drawable/baseline_mail_outline_24"
+        android:layout_marginTop="@dimen/marginTopEmail"
         app:errorEnabled="true"
         app:helperText="@string/example_email"
         app:layout_constraintBottom_toTopOf="@id/textInputPasswordLayout"
         app:layout_constraintEnd_toEndOf="@id/textInputPasswordLayout"
         app:layout_constraintStart_toStartOf="@id/textInputPasswordLayout"
-        app:layout_constraintTop_toBottomOf="@+id/fill_out_profile">
+        app:layout_constraintTop_toBottomOf="@+id/fill_out_profile"
+        app:startIconDrawable="@drawable/baseline_mail_outline_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textEditEmail"
@@ -34,7 +47,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding"
-        app:startIconDrawable="@drawable/baseline_lock_24"
         app:errorEnabled="true"
         app:helperText="@string/password"
         app:helperTextEnabled="true"
@@ -42,7 +54,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputEmail"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        app:startIconDrawable="@drawable/baseline_lock_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textEditPass"
@@ -50,12 +63,10 @@
             android:layout_height="wrap_content"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:textSize="@dimen/text_size_position"
-
-            tools:ignore="DuplicateSpeakableTextCheck" />
+            android:textSize="@dimen/text_size_position" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_google"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,11 +83,11 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox_remember_me"
-        tools:ignore="HardcodedText" />
+        />
 
     <Button
         android:id="@+id/button_register"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/padding"
         android:layout_marginTop="8dp"
@@ -100,6 +111,7 @@
         android:layout_marginBottom="8dp"
         android:text="@string/register_you_agree_terms"
         android:textAlignment="center"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@id/Already_have_account"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_register" />
@@ -108,46 +120,24 @@
         android:id="@+id/checkBox_remember_me"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
         android:text="@string/remember_me"
         android:textColorHint="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/button_google"
         app:layout_constraintEnd_toEndOf="@id/textInputPasswordLayout"
         app:layout_constraintStart_toStartOf="@id/textInputPasswordLayout"
-        app:layout_constraintTop_toBottomOf="@id/textInputPasswordLayout"
-        app:layout_constraintBottom_toTopOf="@id/button_google"
-        />
-
-    <TextView
-        android:id="@+id/Lets_get"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding"
-        android:layout_marginEnd="@dimen/padding"
-        android:layout_marginStart="@dimen/padding"
-        android:text="@string/let_s_get_acquainted"
-        android:textAlignment="center"
-        android:textSize="@dimen/text_size_big"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/textInputPasswordLayout" />
 
     <TextView
         android:id="@+id/fill_out_profile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/padding"
         android:layout_marginStart="@dimen/padding"
+        android:layout_marginEnd="@dimen/padding"
         android:text="@string/fill_out_the_profile_and_go_to_the_application"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Lets_get" />
-
-    <androidx.constraintlayout.widget.Group
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:constraint_referenced_ids="" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewLets" />
 
     <TextView
         android:id="@+id/textView6"

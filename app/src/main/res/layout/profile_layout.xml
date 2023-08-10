@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <View
         android:id="@+id/bottomBackground"
@@ -16,18 +15,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/photo_profile"
         android:layout_width="122dp"
         android:layout_height="122dp"
         android:scaleType="centerCrop"
         android:src="@drawable/yr_photo"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/text_name"
+        app:layout_constraintBottom_toTopOf="@id/button_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="100dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.2" />
 
     <TextView
         android:id="@+id/text_name"
@@ -81,7 +79,7 @@
 
     <Button
         android:id="@+id/button_view"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/padding"
         android:layout_marginEnd="@dimen/padding"
@@ -105,7 +103,6 @@
         android:layout_marginEnd="@dimen/padding"
         android:layout_marginBottom="@dimen/padding"
         android:background="@drawable/yr_white_button"
-        android:onClick="onTestButtonClick"
         android:padding="@dimen/padding"
         android:text="@string/edit_profile"
         android:textColor="@color/black"
@@ -117,12 +114,12 @@
         tools:ignore="MissingConstraints" />
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/button_fb"
-        android:layout_width="66dp"
-        android:layout_height="66dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/padding"
-        android:background="@drawable/yr_fb_button"
+        android:background="@drawable/ic_facebook"
         android:contentDescription="Facebook"
         app:layout_constraintBottom_toBottomOf="@+id/button_lin"
         app:layout_constraintEnd_toStartOf="@id/button_lin"
@@ -151,7 +148,6 @@
         android:layout_marginBottom="@dimen/_22dp"
         app:layout_constraintBottom_toTopOf="@id/button_edit"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="HardcodedText,MissingConstraints" />
 

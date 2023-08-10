@@ -4,29 +4,44 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import yurii.romanenko.shpp.databinding.ProfileLayoutBinding
+import yurii.romanenko.shpp.ext.firstCharToUpper
 import kotlin.properties.Delegates
 
 class ProfileActivity : AppCompatActivity() {
 
-    private var name by Delegates.notNull<String>()
-    private lateinit var textView: TextView
 
+    private val binding: ProfileLayoutBinding by lazy {
+        ProfileLayoutBinding.inflate(layoutInflater)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.profile_layout)
+        setContentView(binding.root)
 
-        textView = findViewById(R.id.text_name)
-
-        name = intent.getStringExtra("text_name").toString()
-
-        textView.text = name
-
+        setProfileView()
+        setListeners()
     }
 
-    fun onTestButtonClick() {
-        val authActivityIntent = Intent(this, AuthActivity::class.java)
-        startActivity(authActivityIntent)
+    private fun setListeners() {
+        onTestButtonClick()
     }
 
+    private fun setProfileView() {
+        binding.textName.text = parseEmailToName(intent.getStringExtra("text_name").toString()) // TODO: to Constants
+    }
+
+    private fun onTestButtonClick() {
+        binding.buttonEdit.setOnClickListener {
+            val authActivityIntent = Intent(this, AuthActivity::class.java)
+            startActivity(authActivityIntent)
+        }
+    }
+    private fun parseEmailToName(email: String): String { // TODO: parser to object class
+        val secondName: String = email.substringBefore('@')
+        val firstName: String = secondName.substringBefore('.')
+            .firstCharToUpper()
+        return "$firstName " + secondName.substringAfter('.')
+            .firstCharToUpper()
+    }
 
 }

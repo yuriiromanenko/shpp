@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">AAA</string>
+
+    <!-- profile activity -->
     <string name="name">Yurii Romanenko</string>
     <string name="position">Android Developer</string>
     <string name="address">Ukraine, Kiyv 04216</string>
@@ -8,6 +10,7 @@
     <string name="edit_profile">Edit profile</string>
     <string name="register">REGISTER</string>
 
+    <!-- sign up activity -->
     <string name="fill_out_the_profile_and_go_to_the_application">Fill out the profile and go to the application!</string>
     <string name="register_you_agree_terms">By clicking Register you agree to our Terms and Conditions</string>
     <string name="already_have_account">Already have an account? Sign in</string>
@@ -20,6 +23,7 @@
     <string name="example_email">For example: tom.kruz@mail.com</string>
     <string name="email">Email</string>
     <string name="let_s_get_acquainted">Let\'s get acquainted</string>
-    <string name="facebook">Facebook</string>
+    <string name="facebook" translatable="false">Facebook</string>
     <string name="photo_profile">photo_profile</string>
+    <string name="hello">hello %d</string>
 </resources>
