@@ -20,7 +20,7 @@
 
         >
         <activity
-            android:name=".ProfileActivity"
+            android:name=".AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +31,7 @@
         </activity>
 
         <activity
-            android:name=".AuthActivity">
+            android:name=".ProfileActivity">
         </activity>
 
         <activity

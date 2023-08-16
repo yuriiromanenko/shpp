@@ -27,4 +27,5 @@
     <string name="let_s_get_acquainted">Let\'s get acquainted</string>
     <string name="email_not_valid">email not valid</string>
     <string name="password_must_contain"><![CDATA[Password must contain Digit & Mixed Case & length 6 char]]></string>
+    <string name="log_out">Log out</string>
 </resources>
