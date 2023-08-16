@@ -1,4 +1,6 @@
 <resources>
+
+<!--    profile activity-->
     <string name="app_name" translatable="false">AAA</string>
     <string name="name">Yurii Romanenko</string>
     <string name="position">Android Developer</string>
@@ -7,7 +9,10 @@
     <string name="view_my_contacts">VIEW MY CONTACTS</string>
     <string name="edit_profile">Edit profile</string>
     <string name="register">REGISTER</string>
+    <string name="facebook" translatable="false">Facebook</string>
+    <string name="photo_profile">photo profile</string>
 
+<!--  Auth activity-->
     <string name="fill_out_the_profile_and_go_to_the_application">Fill out the profile and go to the application!</string>
     <string name="register_you_agree_terms">By clicking Register you agree to our Terms and Conditions</string>
     <string name="already_have_account">Already have an account? Sign in</string>
@@ -20,6 +25,6 @@
     <string name="example_email">For example: tom.kruz@mail.com</string>
     <string name="email">Email</string>
     <string name="let_s_get_acquainted">Let\'s get acquainted</string>
-    <string name="facebook">Facebook</string>
-    <string name="photo_profile">photo_profile</string>
+    <string name="email_not_valid">email not valid</string>
+    <string name="password_must_contain"><![CDATA[Password must contain Digit & Mixed Case & length 6 char]]></string>
 </resources>

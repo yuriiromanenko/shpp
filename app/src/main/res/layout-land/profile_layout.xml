@@ -9,11 +9,12 @@
     <View
         android:id="@+id/bottomBackground"
         android:layout_width="wrap_content"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/address" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier"
@@ -30,12 +31,12 @@
         android:layout_width="60dp"
         android:layout_height="0dp"/>
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/photo_profile"
-        android:layout_width="122dp"
-        android:layout_height="122dp"
+        android:layout_width="@dimen/profile_main_photo_size"
+        android:layout_height="@dimen/profile_main_photo_size"
         android:scaleType="centerCrop"
-        android:src="@drawable/yr_photo"
+        android:src="@drawable/photo_yuri"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/barrier"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +44,7 @@
         tools:ignore="MissingConstraints"
         android:contentDescription="@string/photo_profile" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,7 +57,7 @@
         app:layout_constraintStart_toEndOf="@id/space"
         app:layout_constraintTop_toTopOf="@id/bottomBackground" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,7 +68,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/position"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,7 +84,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_name" />
 
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -99,12 +100,12 @@
         app:layout_constraintTop_toBottomOf="@+id/position" />
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/padding"
-        android:background="@drawable/yr_orange_button"
+        android:background="@drawable/button_orange"
         android:padding="@dimen/padding"
         android:text="@string/view_my_contacts"
         android:textColor="@color/white"
@@ -115,14 +116,13 @@
         app:layout_constraintStart_toEndOf="@id/button_edit"
         tools:ignore="MissingConstraints" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/padding"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/yr_white_button"
-        android:onClick="onTestButtonClick"
+        android:background="@drawable/button_white"
         android:padding="@dimen/padding"
         android:text="@string/edit_profile"
         android:textColor="@color/black"
@@ -133,12 +133,12 @@
         app:layout_constraintTop_toBottomOf="@+id/button_lin"
         tools:ignore="MissingConstraints" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_fb"
         android:layout_width="66dp"
         android:layout_height="66dp"
         android:layout_marginStart="@dimen/padding"
-        android:background="@drawable/yr_fb_button"
+        android:background="@drawable/button_fb"
         android:contentDescription="@string/facebook"
         app:layout_constraintBottom_toBottomOf="@+id/button_lin"
         app:layout_constraintEnd_toStartOf="@id/button_lin"
@@ -146,11 +146,11 @@
         app:layout_constraintStart_toEndOf="@id/space"
          />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_inst"
         android:layout_width="66dp"
         android:layout_height="66dp"
-        android:background="@drawable/yr_inst_button"
+        android:background="@drawable/button_inst"
         android:contentDescription="Instagram"
         app:layout_constraintBottom_toBottomOf="@+id/button_lin"
         app:layout_constraintEnd_toEndOf="parent"
@@ -158,11 +158,11 @@
         app:layout_constraintStart_toEndOf="@id/button_lin"
         tools:ignore="HardcodedText,MissingConstraints" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_lin"
         android:layout_width="66dp"
         android:layout_height="66dp"
-        android:background="@drawable/yr_lin_button"
+        android:background="@drawable/button_lin"
         android:contentDescription="LinkedIn"
         app:layout_constraintEnd_toStartOf="@id/button_inst"
         app:layout_constraintTop_toBottomOf="@id/address"

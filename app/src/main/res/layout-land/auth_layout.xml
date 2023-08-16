@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:layout_editor_absoluteX="56dp"
     tools:layout_editor_absoluteY="-197dp">
 
@@ -16,7 +14,6 @@
         android:layout_marginStart="@dimen/padding"
         android:layout_marginTop="5dp"
         app:errorEnabled="true"
-        app:helperText="@string/example_email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fill_out_profile"
         app:layout_constraintEnd_toStartOf="@id/textInputPasswordLayout"
@@ -60,14 +57,14 @@
             tools:ignore="DuplicateSpeakableTextCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_google"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/padding"
         android:layout_marginEnd="@dimen/padding"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/yr_white_button"
+        android:background="@drawable/button_white"
         android:padding="@dimen/padding"
         android:text="GOOGLE"
         android:textColor="@color/black"
@@ -79,14 +76,14 @@
         app:layout_constraintTop_toTopOf="@+id/button_register"
         tools:ignore="HardcodedText" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_register"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/padding"
         android:layout_marginEnd="@dimen/padding"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/yr_dark_button"
+        android:background="@drawable/button_dark"
         android:padding="@dimen/padding"
         android:text="@string/register"
         android:textSize="@dimen/text_size_position"
@@ -95,7 +92,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox_remember_me" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/register_you_agree_terms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,7 +105,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_register" />
 
-    <CheckBox
+    <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/checkBox_remember_me"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -119,7 +116,7 @@
         app:layout_constraintStart_toStartOf="@+id/textInputEmail"
         app:layout_constraintTop_toBottomOf="@id/textInputEmail" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/Lets_get"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -135,7 +132,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlSymmetry" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fill_out_profile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -153,7 +150,7 @@
         android:visibility="invisible"
         app:constraint_referenced_ids="" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -165,7 +162,7 @@
         app:layout_constraintStart_toStartOf="@+id/button_google"
         app:layout_constraintTop_toBottomOf="@+id/button_google" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/Already_have_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -178,7 +175,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_you_agree_terms" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/SignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,4 +1,5 @@
 package yurii.romanenko.shpp
+
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
@@ -11,12 +12,13 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "us
 class UserPreferences(private val dataStore: DataStore<Preferences>) {
 
     // DefaultPreferences
-    private  val DEFAULT_EMAIL = "yuri.romanenko@mail.ua"
-    private  val DEFAULT_PASS = "KotlinMyLove"
 
     companion object {
         private val EMAIL_KEY = stringPreferencesKey("email_key")
         private val PASS_KEY = stringPreferencesKey("pass_key")
+        private val NAME_KEY = stringPreferencesKey("name_key")
+        const val DEFAULT_EMAIL = "yuri.romanenko@mail.ua"
+        const val DEFAULT_PASS = "KotlinMyLove"
     }
 
     suspend fun saveEmail(email: String) {
@@ -25,9 +27,15 @@ class UserPreferences(private val dataStore: DataStore<Preferences>) {
         }
     }
 
-    suspend fun savePass( pass: String) {
+    suspend fun savePass(pass: String) {
         dataStore.edit { preferences ->
             preferences[PASS_KEY] = pass
+        }
+    }
+
+    suspend fun saveName(name: String) {
+        dataStore.edit { preferences ->
+            preferences[NAME_KEY] = name
         }
     }
 
@@ -38,6 +46,11 @@ class UserPreferences(private val dataStore: DataStore<Preferences>) {
 
     val passFlow: Flow<String?> = dataStore.data
         .map { preferences ->
-            preferences[PASS_KEY]  ?: DEFAULT_PASS
+            preferences[PASS_KEY] ?: DEFAULT_PASS
+        }
+
+    val nameFlow: Flow<String?> = dataStore.data
+        .map { preferences ->
+            preferences[NAME_KEY]
         }
 }

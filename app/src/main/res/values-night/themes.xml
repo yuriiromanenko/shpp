@@ -2,18 +2,14 @@
     <!-- Base application theme. -->
 
 
-    <style name="YR_Theme" parent="Theme.AppCompat.NoActionBar">
-        <!-- Customize your dark theme here. -->
-
-        <!-- window Transitions-->
+    <style name="YR_Theme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:windowContentTransitions">true</item>
-        <item name="android:windowEnterTransition">@android:transition/move</item>
-        <item name="android:windowExitTransition">@android:transition/move</item>
+        <item name="android:windowEnterTransition">@android:transition/fade</item>
+        <item name="android:windowExitTransition">@android:transition/fade</item>
+        <item name="hintTextColor">@color/orange</item>
+        <item name="colorAccent">@color/orange</item>
 
-        <item name="android:windowBackground">@color/background</item>
-        <item name="hintTextColor">@color/gray</item>
-        <item name="colorAccent">@color/gray</item>
-
+        <item name="android:windowBackground">@color/black</item>
 
     </style>
 
