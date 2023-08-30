@@ -1,4 +1,4 @@
-package yurii.romanenko.shpp
+package yurii.romanenko.shpp.datastore
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -17,8 +17,10 @@ class UserPreferences(private val dataStore: DataStore<Preferences>) {
         private val EMAIL_KEY = stringPreferencesKey("email_key")
         private val PASS_KEY = stringPreferencesKey("pass_key")
         private val NAME_KEY = stringPreferencesKey("name_key")
-        const val DEFAULT_EMAIL = "yuri.romanenko@mail.ua"
-        const val DEFAULT_PASS = "KotlinMyLove"
+        private val REMEMBER = booleanPreferencesKey("boolean_checked_me")
+        const val DEFAULT_EMAIL = "aa.bb@cc.dd"
+        const val DEFAULT_PASS = "Aa123456"
+        const val DEFAULT_REMEMBER_ME_CHECK = false
     }
 
     suspend fun saveEmail(email: String) {
@@ -26,6 +28,17 @@ class UserPreferences(private val dataStore: DataStore<Preferences>) {
             preferences[EMAIL_KEY] = email
         }
     }
+
+    suspend fun saveCheck(cheked: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[REMEMBER] = cheked
+        }
+    }
+
+    val checkFlow: Flow<Boolean?> = dataStore.data
+        .map { preferences ->
+            preferences[REMEMBER] ?: DEFAULT_REMEMBER_ME_CHECK
+        }
 
     suspend fun savePass(pass: String) {
         dataStore.edit { preferences ->

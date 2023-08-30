@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <View
         android:id="@+id/bottomBackground"
@@ -22,12 +21,11 @@
         android:layout_height="@dimen/profile_main_photo_size"
         android:scaleType="centerCrop"
         android:src="@drawable/photo_yuri"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/button_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.2"
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_name"
@@ -115,21 +113,20 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/button_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/padding"
         android:layout_marginTop="@dimen/padding"
+        android:layout_marginEnd="@dimen/padding"
         android:background="@drawable/button_logout"
         android:padding="@dimen/padding"
         android:text="@string/log_out"
         android:textColor="@color/gray"
         android:textSize="@dimen/text_size_position"
 
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-         />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_fb"
@@ -159,9 +156,9 @@
         android:id="@+id/button_lin"
         android:layout_width="@dimen/but_size_social"
         android:layout_height="@dimen/but_size_social"
+        android:layout_marginBottom="@dimen/_22dp"
         android:background="@drawable/button_lin"
         android:contentDescription="LinkedIn"
-        android:layout_marginBottom="@dimen/_22dp"
         app:layout_constraintBottom_toTopOf="@id/button_edit"
         app:layout_constraintEnd_toEndOf="parent"
 

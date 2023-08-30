@@ -22,6 +22,6 @@
     <string name="let_s_get_acquainted">Давайте познайомимося</string>
     <string name="email_not_valid">Не пошта</string>
     <string name="photo_profile">Фото профілю</string>
-    <string name="password_must_contain"><![CDATA[Password must contain Digit & Mixed Case & length 6 char]]></string>
+    <string name="password_must_contain">Пароль має бути більше 6 літер, велика та маленька, має цифру </string>
     <string name="log_out">Вийти</string>
 </resources>
