@@ -38,7 +38,6 @@
             android:name=".MyContactsActivity">
         </activity>
 
-
     </application>
 
 </manifest>

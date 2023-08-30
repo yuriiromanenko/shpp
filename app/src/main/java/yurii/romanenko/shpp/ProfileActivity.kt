@@ -6,11 +6,10 @@ import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import yurii.romanenko.shpp.databinding.ProfileLayoutBinding
-import yurii.romanenko.shpp.ext.firstCharToUpper
+import yurii.romanenko.shpp.datastore.UserPreferences
+import yurii.romanenko.shpp.datastore.dataStore
 
 class ProfileActivity : AppCompatActivity() {
-
-
 
     private val userPreferences: UserPreferences by lazy {
         UserPreferences(applicationContext.dataStore)
@@ -23,34 +22,39 @@ class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
         setListeners()
-
+        loadUser()
+    }
+    private fun loadUser() {
         lifecycleScope.launch {
-            userPreferences.emailFlow.collect { savedEmail ->
-                savedEmail?.let {
-                   var email = it
-                    binding.textName.text = parseEmailToName(email)
+            userPreferences.nameFlow.collect { savedData ->
+                savedData?.let {
+                    binding.textName.text = it
                 }
             }
         }
-
     }
 
     private fun setListeners() {
-        binding.buttonEdit.setOnClickListener {  onTestButtonClick()      }
+        binding.buttonEdit.setOnClickListener {  goMyContact() }
+        binding.buttonLogout?.setOnClickListener { goAutuhActivity()   }
     }
 
-    fun onTestButtonClick() {
+    private fun goMyContact() {
         val intent = Intent(this, MyContactsActivity::class.java)
         startActivity(intent)
     }
 
-    private fun parseEmailToName(email: String): String {
-        val secondName: String = email.substringBefore('@')
-        val firstName: String = secondName.substringBefore('.')
-            .firstCharToUpper()
-        return "$firstName " + secondName.substringAfter('.')
-            .firstCharToUpper()
+    private fun goAutuhActivity() {
+        notRememberMe()
+        val intent = Intent(this, AuthActivity::class.java)
+        startActivity(intent)
     }
+    private fun notRememberMe() {
+        lifecycleScope.launch {
+            userPreferences.saveCheck(false)
+        }
+    }
+
+
 }

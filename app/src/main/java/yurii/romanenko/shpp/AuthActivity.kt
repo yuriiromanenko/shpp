@@ -3,21 +3,20 @@ package yurii.romanenko.shpp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import yurii.romanenko.shpp.databinding.AuthLayoutBinding
-import kotlin.properties.Delegates.notNull
+import yurii.romanenko.shpp.datastore.UserPreferences
+import yurii.romanenko.shpp.datastore.dataStore
+import yurii.romanenko.shpp.ext.firstCharToUpper
 
 class AuthActivity : AppCompatActivity() {
 
     private val binding: AuthLayoutBinding by lazy {
         AuthLayoutBinding.inflate(layoutInflater)
     }
-
-    private var email by notNull<String>()
-    private var password by notNull<String>()
-
 
     private val userPreferences: UserPreferences by lazy {
         UserPreferences(applicationContext.dataStore)
@@ -27,9 +26,26 @@ class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        loadUser()
-        validatesInput()
         setListeners()
+        autoLogin()
+        validatesInput()
+    }
+
+    private fun autoLogin() {
+        lifecycleScope.launch {
+            userPreferences.checkFlow.collect { savedData ->
+                savedData?.let {
+                    if (it) {
+                        startProfileActivity()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun startProfileActivity() {
+        val intent = Intent(this, ProfileActivity::class.java)
+        startActivity(intent)
     }
 
     private fun setListeners() {
@@ -37,34 +53,13 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun validatesInput() {
+        Log.d("YRLOG", "validation")
         emailCheck()
         passwordCheck()
     }
 
-    private fun loadUser() {
-        lifecycleScope.launch {
-            userPreferences.emailFlow.collect { savedEmail ->
-                savedEmail?.let {
-                    email = it
-                    binding.textEditEmail.setText(email)
-                }
-            }
-        }
-
-        lifecycleScope.launch {
-            userPreferences.passFlow.collect { savedPass ->
-                savedPass?.let {
-                    password = it
-                    binding.textEditPass.setText(password)
-                }
-            }
-        }
-    }
-
-
     private fun passwordCheck() {
         binding.textEditPass.doOnTextChanged { text, _, _, _ ->
-
             binding.textInputPasswordLayout.error =
                 if (Validation.isValidPassword(text.toString())) {
                     null
@@ -86,34 +81,27 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun clickButtonRegister() {
-        val intent = Intent(this, ProfileActivity::class.java)
-//        val rememberMeIsChecked: Boolean = binding.checkBoxRememberMe.isChecked
-//
-//        email = binding.textEditEmail.text.toString()
-//        password = binding.textEditPass.text.toString()
-//        Log.d("TEST_LOG", "Click REGISTER: $email")
-
-//        if (rememberMeIsChecked) {
-//
-//            if (email.isNotEmpty() && password.isNotEmpty()) {
-//                lifecycleScope.launch {
-//                    userPreferences.saveEmail(email)
-//                    userPreferences.savePass(password)
-//                }
-//            }
-//        }
-
-//        lifecycleScope.launch {
-//            userPreferences.saveName(email)
-//        }
-
-        startActivity(intent)
-
+        if (Validation.isValidEmail(getEmail())
+            && Validation.isValidPassword(getPassword())
+        ) {
+            lifecycleScope.launch {
+                userPreferences.saveEmail(getEmail())
+                userPreferences.saveName(parseEmailToName(getEmail()))
+                userPreferences.savePass(getPassword())
+                userPreferences.saveCheck(binding.checkBoxRememberMe.isChecked)
+            }
+            startProfileActivity()
+        }
     }
-
-
-
-
+    private fun getPassword() = binding.textEditPass.text.toString()
+    private fun getEmail() = binding.textEditEmail.text.toString()
+    private fun parseEmailToName(email: String): String {
+        val secondName: String = email.substringBefore('@')
+        val firstName: String = secondName.substringBefore('.')
+            .firstCharToUpper()
+        return "$firstName " + secondName.substringAfter('.')
+            .firstCharToUpper()
+    }
 }
 
 
