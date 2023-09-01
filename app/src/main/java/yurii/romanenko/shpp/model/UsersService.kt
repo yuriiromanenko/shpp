@@ -15,7 +15,7 @@ class UsersService {
     init {
         val faker = Faker.instance()
         IMAGES.shuffle()
-        users = (1..100).map {
+        users = (1..10).map {
             User(
                 id = it.toLong(),
                 name = faker.name().name(),
