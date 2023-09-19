@@ -24,4 +24,5 @@
     <string name="photo_profile">Фото профілю</string>
     <string name="password_must_contain">Пароль має бути більше 6 літер, велика та маленька, має цифру </string>
     <string name="log_out">Вийти</string>
+    <string name="contacts">Contacts</string>
 </resources>

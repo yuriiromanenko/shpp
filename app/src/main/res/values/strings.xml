@@ -28,4 +28,7 @@
     <string name="email_not_valid">email not valid</string>
     <string name="password_must_contain">Password must contain Digit Mixed Case length 6 char</string>
     <string name="log_out">Log out</string>
+    <string name="add_contacts">add contacts</string>
+    <string name="back">back</string>
+    <string name="contacts">Contacts</string>
 </resources>

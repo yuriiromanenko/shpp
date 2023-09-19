@@ -3,7 +3,9 @@ package yurii.romanenko.shpp
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import yurii.romanenko.shpp.databinding.MyContactsRecyclerviewBinding
 import yurii.romanenko.shpp.model.User
 import yurii.romanenko.shpp.model.UserActionListener
@@ -42,6 +44,26 @@ class MyContactsActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapter
         usersService.addListener(usersListener)
+
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                // this method is called
+                // when the item is moved.
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                // adapter.not
+                Toast.makeText(this@MyContactsActivity, "contact  has been removed", Toast.LENGTH_SHORT).show()
+            }
+
+        }).attachToRecyclerView( binding.recyclerView ) // TODO: ?
+
+
     }
 
 
