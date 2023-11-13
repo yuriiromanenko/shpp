@@ -29,7 +29,7 @@ class UserPreferences(private val dataStore: DataStore<Preferences>) {
         }
     }
 
-    suspend fun saveCheck(cheked: Boolean) {
+    suspend fun saveCheckBox(cheked: Boolean) {
         dataStore.edit { preferences ->
             preferences[REMEMBER] = cheked
         }

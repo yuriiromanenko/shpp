@@ -1,4 +1,4 @@
-package yurii.romanenko.shpp
+package yurii.romanenko.shpp.utils
 
 import android.util.Patterns
 

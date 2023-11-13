@@ -31,4 +31,14 @@
     <string name="add_contacts">add contacts</string>
     <string name="back">back</string>
     <string name="contacts">Contacts</string>
+    <string name="contact_deleted">The contact has been deleted</string>
+    <string name="undo">UNDO</string>
+    <string name="user_name">Name</string>
+    <string name="add_contact">add contact</string>
+    <string name="profile_photo">profile photo</string>
+    <string name="save">save</string>
+    <string name="career">Career</string>
+    <string name="add_photo">add photo</string>
+    <string name="phone">phone</string>
+    <string name="date_of_birth">Date of birth</string>
 </resources>

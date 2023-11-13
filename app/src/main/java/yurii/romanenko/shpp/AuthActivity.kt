@@ -11,6 +11,7 @@ import yurii.romanenko.shpp.databinding.AuthLayoutBinding
 import yurii.romanenko.shpp.datastore.UserPreferences
 import yurii.romanenko.shpp.datastore.dataStore
 import yurii.romanenko.shpp.ext.firstCharToUpper
+import yurii.romanenko.shpp.utils.Validation
 
 class AuthActivity : AppCompatActivity() {
 
@@ -88,7 +89,7 @@ class AuthActivity : AppCompatActivity() {
                 userPreferences.saveEmail(getEmail())
                 userPreferences.saveName(parseEmailToName(getEmail()))
                 userPreferences.savePass(getPassword())
-                userPreferences.saveCheck(binding.checkBoxRememberMe.isChecked)
+                userPreferences.saveCheckBox(binding.checkBoxRememberMe.isChecked)
             }
             startProfileActivity()
         }

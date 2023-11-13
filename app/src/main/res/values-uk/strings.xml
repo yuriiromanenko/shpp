@@ -24,5 +24,16 @@
     <string name="photo_profile">Фото профілю</string>
     <string name="password_must_contain">Пароль має бути більше 6 літер, велика та маленька, має цифру </string>
     <string name="log_out">Вийти</string>
-    <string name="contacts">Contacts</string>
+    <string name="add_contacts">додати контакт</string>
+    <string name="back">назад</string>
+    <string name="contacts">Контакти</string>
+    <string name="contact_deleted">Контакт був видалений</string>
+    <string name="undo">UNDO</string>
+    <string name="user_name">Name</string>
+    <string name="add_contact">add contact</string>
+    <string name="profile_photo">profile photo</string>
+    <string name="save">save</string>
+    <string name="career">Career</string>
+    <string name="phone">phone</string>
+    <string name="date_of_birth">Date of birth</string>
 </resources>

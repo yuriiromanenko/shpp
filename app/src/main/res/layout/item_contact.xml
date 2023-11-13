@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+
+    android:background="?android:attr/selectableItemBackground"
     style="@style/Theme.AppCompat.Light"
 
     >
@@ -21,6 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/barrierMyContacts"
         android:src="@drawable/button_white_normal"
+        android:background="@color/white"
         />
 
 

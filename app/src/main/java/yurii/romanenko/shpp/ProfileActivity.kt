@@ -36,12 +36,13 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun setListeners() {
-        binding.buttonEdit.setOnClickListener {  goMyContact() }
+        binding.buttonEdit.setOnClickListener {   }
+        binding.btnViewMyContacts?.setOnClickListener {  goMyContact() }
         binding.buttonLogout?.setOnClickListener { goAutuhActivity()   }
     }
 
     private fun goMyContact() {
-        val intent = Intent(this, MyContactsActivity::class.java)
+        val intent = Intent(this, ContactsActivity::class.java)
         startActivity(intent)
     }
 
@@ -52,7 +53,7 @@ class ProfileActivity : AppCompatActivity() {
     }
     private fun notRememberMe() {
         lifecycleScope.launch {
-            userPreferences.saveCheck(false)
+            userPreferences.saveCheckBox(false)
         }
     }
 

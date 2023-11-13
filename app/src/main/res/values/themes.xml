@@ -1,21 +1,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+
     <!-- Base application theme. -->
-
     <style name="YR_Theme" parent="Theme.AppCompat.NoActionBar">
-        <!-- Customize your dark theme here. -->
-
         <!-- window Transitions-->
         <item name="android:windowContentTransitions">true</item>
         <item name="android:windowEnterTransition">@android:transition/move</item>
         <item name="android:windowExitTransition">@android:transition/move</item>
-
         <item name="android:windowBackground">@color/background</item>
         <item name="hintTextColor">@color/gray</item>
         <item name="colorAccent">@color/gray</item>
-
-
     </style>
 
+        <!-- for add Contact Dialog -->
+    <style name="DialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowMinWidthMajor">95%</item>
+        <item name="android:windowMinWidthMinor">95%</item>
+    </style>
 
 </resources>
 
