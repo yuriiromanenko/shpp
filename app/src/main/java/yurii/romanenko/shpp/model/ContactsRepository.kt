@@ -10,9 +10,13 @@ typealias ContactsListener = (users: List<Contact>) -> Unit
 interface ContactsRepositoryInterface {
 
     fun getContacts(): StateFlow<List<Contact>>
-    fun deleteContact(contactPosition: Int)
+    fun deleteContactByFlow(contactPosition: Int)
     fun restoreLastDeletedContact()
     fun addContact(contact: Contact, index: Int)
+
+    fun deleteContactByIndex(contactPosition: Int)
+
+    fun getSizeContacts(): Int
 }
 
 class ContactsRepository : ContactsRepositoryInterface {
@@ -24,7 +28,7 @@ class ContactsRepository : ContactsRepositoryInterface {
     private var lastDeletedContact: LastDeletedContact? = null
 
     init {
-        val contactsSize = 10
+        val contactsSize = 4
         // create user-pic
         for (i in 1..contactsSize) {
             IMAGES.add("https://picsum.photos/200?random=$i")
@@ -45,28 +49,39 @@ class ContactsRepository : ContactsRepositoryInterface {
     override fun getContacts() = contactsFlow
 
     override fun addContact(contact: Contact, index: Int) {
-        _contactsFlow.value = _contactsFlow.value.toMutableList().apply {
-            add(index, contact)
+        contacts = ArrayList(contacts)
+        contacts.add(index, contact)
+        addListener { }
+       notifyChanges()
+
+    }
+
+    override fun deleteContactByFlow(contactPosition: Int) { // TODO: deleteContactByFlow NOT WORK
+        lastDeletedContact = LastDeletedContact(contactPosition, contacts.get(contactPosition))
+        _contactsFlow.value = _contactsFlow.value.apply {
+            removeAt(contactPosition)
         }
     }
 
-    override fun deleteContact(contactPosition: Int) { // TODO: I have 3 methods of Delete 1
-        _contactsFlow.value = _contactsFlow.value.toMutableList().apply {
-            lastDeletedContact = LastDeletedContact(contactPosition, get(contactPosition))
-        }
-    }
-
-    fun deleteContact(user: Contact) {  // TODO: I have 3 methods of Delete 2
-        val indexToDelete: Int = contacts.indexOfFirst { it.id == user.id }
+    fun deleteContact(contact: Contact) {
+        val indexToDelete: Int = contacts.indexOfFirst { it.id == contact.id }
+        lastDeletedContact = LastDeletedContact(indexToDelete, contact)
         if (indexToDelete != -1) {
+            contacts = ArrayList(contacts)
             contacts.removeAt(indexToDelete)
             notifyChanges()
         }
     }
 
-    fun deleteContactByIndex(contactPosition: Int) {  // TODO: I have 3 methods of Delete 3
+    override fun deleteContactByIndex(contactPosition: Int) {
+        lastDeletedContact = LastDeletedContact(contactPosition, contacts.get(contactPosition))
+        contacts = ArrayList(contacts)
         contacts.removeAt(contactPosition)
         notifyChanges()
+    }
+
+    override fun getSizeContacts(): Int {
+        return contacts.size
     }
 
     override fun restoreLastDeletedContact() {

@@ -2,7 +2,7 @@
 <!--        Profile layout-->
     <string name="name">Юрій Романенко</string>
     <string name="position">Android Developer</string>
-    <string name="address">Україна, Kиїв, 04216</string>
+    <string name="my_address">Україна, Kиїв, 04216</string>
     <string name="settings">Налаштування</string>
     <string name="view_my_contacts">мої контакти</string>
     <string name="edit_profile">Редагувати профіль</string>
@@ -28,12 +28,14 @@
     <string name="back">назад</string>
     <string name="contacts">Контакти</string>
     <string name="contact_deleted">Контакт був видалений</string>
-    <string name="undo">UNDO</string>
-    <string name="user_name">Name</string>
-    <string name="add_contact">add contact</string>
-    <string name="profile_photo">profile photo</string>
-    <string name="save">save</string>
-    <string name="career">Career</string>
-    <string name="phone">phone</string>
-    <string name="date_of_birth">Date of birth</string>
+    <string name="undo">повернути</string>
+    <string name="user_name">Ім\'я</string>
+    <string name="add_contact">Додати контакт</string>
+    <string name="profile_photo">Фото профіля</string>
+    <string name="save">зберегти</string>
+    <string name="career">Робота</string>
+    <string name="add_photo">Додати фото</string>
+    <string name="phone">Телефон</string>
+    <string name="date_of_birth">Дата народження</string>
+    <string name="address">Адреса</string>
 </resources>

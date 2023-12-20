@@ -3,35 +3,58 @@ package yurii.romanenko.shpp.model
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import yurii.romanenko.shpp.R
 import yurii.romanenko.shpp.databinding.ItemContactBinding
 import yurii.romanenko.shpp.ext.loadImage
 
-interface ContactActionListener{
+interface ContactActionListener {
     fun onUserDelete(contact: Contact)
     fun onUserProfile(contact: Contact)
 }
 
-class ContactsAdapter(
-    private val actionListener : ContactActionListener
-): RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder>(), View.OnClickListener {
+class ContactsDiffCallback(
+    private val oldList: List<Contact>,
+    private val newList: List<Contact>,
+) : DiffUtil.Callback() {
+    override fun getOldListSize(): Int = oldList.size
+    override fun getNewListSize(): Int = newList.size
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        val oldContact = oldList[oldItemPosition]
+        val newContact = newList[newItemPosition]
+        return oldContact.id == newContact.id
+    }
 
-    var contacts : List<Contact> = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        val oldContact = oldList[oldItemPosition]
+        val newContact = newList[newItemPosition]
+        return oldContact == newContact
+    }
+
+}
+
+class ContactsAdapter(
+    private val actionListener: ContactActionListener
+) : RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder>(), View.OnClickListener {
+
+    var contacts: List<Contact> = emptyList()
+        set(newValue) {
+            val diffCallback = ContactsDiffCallback(field,newValue)
+            val diffResult =  DiffUtil.calculateDiff(diffCallback, false)
+            field = newValue
+            diffResult.dispatchUpdatesTo(this)
         }
 
     override fun onClick(v: View) {
         val contact = v.tag as Contact
-        when(v.id){
+        when (v.id) {
             R.id.deleteButton -> {
-            actionListener.onUserDelete(contact)
+                actionListener.onUserDelete(contact)
             }
-            else ->{
-               actionListener.onUserProfile(contact)
+
+            else -> {
+                actionListener.onUserProfile(contact)
             }
 
         }
@@ -40,7 +63,7 @@ class ContactsAdapter(
     override fun getItemCount(): Int = contacts.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsViewHolder {
-       val inflater = LayoutInflater.from(parent.context)
+        val inflater = LayoutInflater.from(parent.context)
         val binding = ItemContactBinding.inflate(inflater, parent, false)
         binding.root.setOnClickListener(this)
         binding.deleteButton.setOnClickListener(this)
@@ -50,14 +73,14 @@ class ContactsAdapter(
 
     override fun onBindViewHolder(holder: ContactsViewHolder, position: Int) {
         val user = contacts[position]
-        with(holder.binding){
+        with(holder.binding) {
             holder.itemView.tag = user
             deleteButton.tag = user
             userNameTextView.text = user.name
             userCompanyTextView.text = user.company
-            if (user.photo.isNotBlank()){
+            if (user.photo.isNotBlank()) {
                 photoImageView.loadImage(user.photo)
-            } else{
+            } else {
                 photoImageView.setImageResource(R.drawable.ic_user_avatar)
             }
         }

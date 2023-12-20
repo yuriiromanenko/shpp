@@ -89,7 +89,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:text="@string/address"
+        android:text="@string/my_address"
         android:textColor="#78909C"
         android:textSize="@dimen/text_size_medium"
         app:layout_constraintEnd_toEndOf="@+id/text_name"

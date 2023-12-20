@@ -9,14 +9,36 @@
         <item name="android:windowExitTransition">@android:transition/move</item>
         <item name="android:windowBackground">@color/background</item>
         <item name="hintTextColor">@color/gray</item>
-        <item name="colorAccent">@color/gray</item>
+        <item name="colorPrimaryDark">@color/gray</item>  status bar
+        <item name="colorPrimary">@color/white</item>
+
     </style>
 
-        <!-- for add Contact Dialog -->
-    <style name="DialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <!-- for addContactDialog -->
+    <style name="DialogTheme" parent="YR_Theme">
+
+        <item name="android:textSize">@dimen/text_size_medium</item>
+
+        <!--Control coloring-->
+        <item name="android:colorBackground">@color/background</item> not work
+        <item name="android:colorForeground">@color/background</item>
+        <item name="colorControlNormal">@color/gray</item> normal line hint  +
+        <item name="colorControlActivated">@color/gray</item>  active line hint  +
+        <item name="android:editTextColor">@color/black</item> +
+        <item name="android:textColorHint">@color/gray</item> +
+         <item name="boxBackgroundColor">@color/orange</item> not work
+
+
+        <!--System properties-->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/gray</item>
+        <item name="materialAlertDialogTheme">@color/orange</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowMinWidthMajor">95%</item>
-        <item name="android:windowMinWidthMinor">95%</item>
+        <item name="hintTextColor">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:windowMinWidthMajor">97%</item>
+        <item name="android:windowMinWidthMinor">97%</item>
+
     </style>
 
 </resources>
