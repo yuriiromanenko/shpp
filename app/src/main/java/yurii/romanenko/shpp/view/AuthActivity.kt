@@ -1,4 +1,4 @@
-package yurii.romanenko.shpp
+package yurii.romanenko.shpp.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
+import yurii.romanenko.shpp.R
 import yurii.romanenko.shpp.databinding.AuthLayoutBinding
 import yurii.romanenko.shpp.datastore.UserPreferences
 import yurii.romanenko.shpp.datastore.dataStore

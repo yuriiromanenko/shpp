@@ -1,4 +1,4 @@
-package yurii.romanenko.shpp
+package yurii.romanenko.shpp.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,24 +10,20 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import yurii.romanenko.shpp.R
 import yurii.romanenko.shpp.databinding.ContactsBinding
-import yurii.romanenko.shpp.model.AddContactDialog
-import yurii.romanenko.shpp.model.AddContactInterface
 import yurii.romanenko.shpp.model.Contact
 import yurii.romanenko.shpp.model.ContactActionListener
 import yurii.romanenko.shpp.model.ContactsAdapter
-import yurii.romanenko.shpp.model.ContactsListener
 import yurii.romanenko.shpp.model.ContactsRepository
 
 class ContactsActivity : AppCompatActivity(), AddContactInterface {
 
     private lateinit var binding: ContactsBinding
     private lateinit var adapter: ContactsAdapter
-    val viewModel: ContactViewModel by viewModels(){
-        ContactViewModelFactory(ContactsRepository())
+    val viewModel: ContactViewModel by viewModels {
+        ContactViewModelFactory(ContactsRepository()) //todo  ContactsRepository() ???
     }
-    private val contactsRepository: ContactsRepository
-        get() = (applicationContext as App).contactsRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,24 +31,21 @@ class ContactsActivity : AppCompatActivity(), AddContactInterface {
         setContentView(binding.root)
 
         initAdapter()
+        initLiveData()
+        initListeners()
+        initRecyclerView()
+        initTouchHelper()
+    }
 
-
-        binding.tvAddContact.setOnClickListener {
-            showDialog();
+    private fun initLiveData() {
+        viewModel.contactsLive.observe(this) {
+            adapter.contacts = it
         }
+    }
 
-        binding.btnBack.setOnClickListener {
-            startActivity(Intent(this, ProfileActivity::class.java))
-        }
-
-
-        val layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = adapter
-
-        contactsRepository.addListener(contactsListener)
-
+    private fun initTouchHelper() {
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
@@ -65,18 +58,38 @@ class ContactsActivity : AppCompatActivity(), AddContactInterface {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.bindingAdapterPosition
-                    //  viewModel.deleteContact(position)
-               contactsRepository.deleteContactByIndex(position)
-               undoDelete()
+                viewModel.deleteContact(position)
+               // contactsRepository.deleteContactByIndex(position)
+                undoDelete()
             }
         }).attachToRecyclerView(binding.recyclerView)
+    }
+
+    private fun initRecyclerView() {
+        val layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.layoutManager = layoutManager
+        binding.recyclerView.adapter = adapter
+    }
+
+    private fun initListeners() {
+
+       // contactsRepository.addListener(contactsListener)
+
+        binding.tvAddContact.setOnClickListener {
+            showDialog()
+        }
+
+        binding.btnBack.setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
+        }
     }
 
     private fun initAdapter() {
         adapter = ContactsAdapter(
             object : ContactActionListener {
                 override fun onUserDelete(contact: Contact) {
-                    contactsRepository.deleteContact(contact)
+                    viewModel.deleteContact(contact)
+                    // contactsRepository.deleteContact(contact)
                     Toast.makeText(
                         this@ContactsActivity,
                         "contact ${contact.name} has been removed",
@@ -111,24 +124,16 @@ class ContactsActivity : AppCompatActivity(), AddContactInterface {
     }
 
     private fun restoreContact() {
-        contactsRepository.restoreLastDeletedContact()
+       viewModel.restoreLastDeletedContact()
     }
 
-
-    override fun onDestroy() {
-        super.onDestroy()
-        contactsRepository.removeListener(contactsListener)
-    }
-
-    private val contactsListener: ContactsListener = {
-        adapter.contacts = it
-    }
 
     companion object {
         const val ADD_CONTACT_DIALOG = "AddContactDialog"
     }
 
     override fun addContact(contact: Contact) {
-        contactsRepository.addContact(contact, contactsRepository.getSizeContacts())
+        viewModel.addContact(contact)
+       // contactsRepository.addContact(contact, contactsRepository.getSizeContacts())
     }
 }

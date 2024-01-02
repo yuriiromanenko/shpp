@@ -20,7 +20,7 @@
 
         >
         <activity
-            android:name=".AuthActivity"
+            android:name=".view.AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,11 +31,11 @@
         </activity>
 
         <activity
-            android:name=".ProfileActivity">
+            android:name=".view.ProfileActivity">
         </activity>
 
         <activity
-            android:name=".ContactsActivity">
+            android:name=".view.ContactsActivity">
         </activity>
 
     </application>

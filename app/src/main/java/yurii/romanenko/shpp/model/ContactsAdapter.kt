@@ -14,34 +14,14 @@ interface ContactActionListener {
     fun onUserProfile(contact: Contact)
 }
 
-class ContactsDiffCallback(
-    private val oldList: List<Contact>,
-    private val newList: List<Contact>,
-) : DiffUtil.Callback() {
-    override fun getOldListSize(): Int = oldList.size
-    override fun getNewListSize(): Int = newList.size
-    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        val oldContact = oldList[oldItemPosition]
-        val newContact = newList[newItemPosition]
-        return oldContact.id == newContact.id
-    }
-
-    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        val oldContact = oldList[oldItemPosition]
-        val newContact = newList[newItemPosition]
-        return oldContact == newContact
-    }
-
-}
-
 class ContactsAdapter(
     private val actionListener: ContactActionListener
 ) : RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder>(), View.OnClickListener {
 
     var contacts: List<Contact> = emptyList()
         set(newValue) {
-            val diffCallback = ContactsDiffCallback(field,newValue)
-            val diffResult =  DiffUtil.calculateDiff(diffCallback, false)
+            val diffCallback = ContactsDiffCallback(field, newValue)
+            val diffResult = DiffUtil.calculateDiff(diffCallback, false)
             field = newValue
             diffResult.dispatchUpdatesTo(this)
         }
@@ -56,7 +36,6 @@ class ContactsAdapter(
             else -> {
                 actionListener.onUserProfile(contact)
             }
-
         }
     }
 
@@ -90,5 +69,26 @@ class ContactsAdapter(
     class ContactsViewHolder(
         val binding: ItemContactBinding
     ) : RecyclerView.ViewHolder(binding.root)
+
+}
+
+
+class ContactsDiffCallback(
+    private val oldList: List<Contact>,
+    private val newList: List<Contact>,
+) : DiffUtil.Callback() {
+    override fun getOldListSize(): Int = oldList.size
+    override fun getNewListSize(): Int = newList.size
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        val oldContact = oldList[oldItemPosition]
+        val newContact = newList[newItemPosition]
+        return oldContact.id == newContact.id
+    }
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        val oldContact = oldList[oldItemPosition]
+        val newContact = newList[newItemPosition]
+        return oldContact == newContact
+    }
 
 }

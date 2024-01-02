@@ -1,4 +1,4 @@
-package yurii.romanenko.shpp
+package yurii.romanenko.shpp.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

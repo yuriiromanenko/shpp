@@ -1,34 +1,28 @@
 package yurii.romanenko.shpp.model
 
 import com.github.javafaker.Faker
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 
-typealias ContactsListener = (users: List<Contact>) -> Unit
+typealias ContactsListener = (contact: List<Contact>) -> Unit
 
 interface ContactsRepositoryInterface {
 
-    fun getContacts(): StateFlow<List<Contact>>
-    fun deleteContactByFlow(contactPosition: Int)
     fun restoreLastDeletedContact()
     fun addContact(contact: Contact, index: Int)
-
-    fun deleteContactByIndex(contactPosition: Int)
-
+    fun deleteContact(contact: Contact)
+    fun deleteContact(contactPosition: Int)
     fun getSizeContacts(): Int
+    fun addListener(listener: ContactsListener)
+    fun removeListener(listener: ContactsListener)
 }
 
 class ContactsRepository : ContactsRepositoryInterface {
 
-    private val _contactsFlow = MutableStateFlow(contacts)
-    private val contactsFlow = _contactsFlow.asStateFlow()
 
     private val listeners = mutableListOf<ContactsListener>()
     private var lastDeletedContact: LastDeletedContact? = null
 
     init {
-        val contactsSize = 4
+        val contactsSize = 8
         // create user-pic
         for (i in 1..contactsSize) {
             IMAGES.add("https://picsum.photos/200?random=$i")
@@ -36,34 +30,27 @@ class ContactsRepository : ContactsRepositoryInterface {
         // create name and company
         val faker = Faker.instance()
         IMAGES.shuffle()
-        contacts = (1..contactsSize).map {
-            Contact(
-                id = it.toLong(),
-                name = faker.name().name(),
-                company = faker.company().name(),
-                photo = IMAGES[it % IMAGES.size]
-            )
-        }.toMutableList()
+        if (contacts.isEmpty()) {
+            contacts = (1..contactsSize).map {
+                Contact(
+                    id = it.toLong(),
+                    name = faker.name().name(),
+                    company = faker.company().name(),
+                    photo = IMAGES[it % IMAGES.size]
+                )
+            }.toMutableList()
+        }
     }
-
-    override fun getContacts() = contactsFlow
 
     override fun addContact(contact: Contact, index: Int) {
         contacts = ArrayList(contacts)
         contacts.add(index, contact)
-        addListener { }
+        addListener { } //todo  addListener?
        notifyChanges()
 
     }
 
-    override fun deleteContactByFlow(contactPosition: Int) { // TODO: deleteContactByFlow NOT WORK
-        lastDeletedContact = LastDeletedContact(contactPosition, contacts.get(contactPosition))
-        _contactsFlow.value = _contactsFlow.value.apply {
-            removeAt(contactPosition)
-        }
-    }
-
-    fun deleteContact(contact: Contact) {
+    override fun deleteContact(contact: Contact) {
         val indexToDelete: Int = contacts.indexOfFirst { it.id == contact.id }
         lastDeletedContact = LastDeletedContact(indexToDelete, contact)
         if (indexToDelete != -1) {
@@ -73,8 +60,8 @@ class ContactsRepository : ContactsRepositoryInterface {
         }
     }
 
-    override fun deleteContactByIndex(contactPosition: Int) {
-        lastDeletedContact = LastDeletedContact(contactPosition, contacts.get(contactPosition))
+    override fun deleteContact(contactPosition: Int) {
+        lastDeletedContact = LastDeletedContact(contactPosition, contacts[contactPosition])
         contacts = ArrayList(contacts)
         contacts.removeAt(contactPosition)
         notifyChanges()
@@ -90,12 +77,12 @@ class ContactsRepository : ContactsRepositoryInterface {
     }
 
 
-    fun addListener(listener: ContactsListener) {
+    override fun addListener(listener: ContactsListener) {
         listeners.add(listener)
         listener.invoke(contacts)
     }
 
-    fun removeListener(listener: ContactsListener) {
+    override fun removeListener(listener: ContactsListener) {
         listeners.remove(listener)
     }
 

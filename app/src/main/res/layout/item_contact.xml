@@ -10,20 +10,21 @@
     style="@style/Theme.AppCompat.Light"
 
     >
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/corners"
         android:layout_width="0dp"
         android:layout_height="0dp"
-       android:layout_marginStart="@dimen/padding"
-        android:layout_marginEnd="@dimen/padding"
+        android:layout_marginStart="@dimen/padding"
         android:layout_marginTop="@dimen/padding"
+        android:layout_marginEnd="@dimen/padding"
+        android:background="@color/white"
+        android:src="@drawable/button_white_normal"
+        app:layout_constraintBottom_toTopOf="@id/barrierMyContacts"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/barrierMyContacts"
-        android:src="@drawable/button_white_normal"
-        android:background="@color/white"
-        />
+        tools:ignore="ImageContrastCheck" />
 
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -47,7 +48,6 @@
         app:layout_constraintTop_toTopOf="@id/corners" />
 
 
-
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/userNameTextView"
         android:layout_width="0dp"
@@ -55,12 +55,13 @@
         android:layout_marginStart="@dimen/padding"
         android:ellipsize="end"
         android:lines="1"
-        android:text="Yurii Romanenko"
+        android:text="@string/name_user"
         android:textColor="@color/black"
         android:textSize="@dimen/_22dp"
         app:layout_constraintEnd_toStartOf="@id/deleteButton"
         app:layout_constraintStart_toEndOf="@id/photoImageView"
-        app:layout_constraintTop_toTopOf="@id/photoImageView" />
+        app:layout_constraintTop_toTopOf="@id/photoImageView"
+        tools:ignore="SpUsage,TextSizeCheck" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/userCompanyTextView"
@@ -70,12 +71,13 @@
         android:layout_marginEnd="@dimen/padding"
         android:ellipsize="end"
         android:lines="1"
-        android:text="Android Developer"
+        android:text="@string/career_user"
         android:textColor="@color/gray"
-        android:textSize="16dp"
+        android:textSize="@dimen/text_size_medium"
         app:layout_constraintEnd_toStartOf="@id/deleteButton"
         app:layout_constraintStart_toEndOf="@id/photoImageView"
-        app:layout_constraintTop_toBottomOf="@id/userNameTextView" />
+        app:layout_constraintTop_toBottomOf="@id/userNameTextView"
+        tools:ignore="TextContrastCheck" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrierMyContacts"
