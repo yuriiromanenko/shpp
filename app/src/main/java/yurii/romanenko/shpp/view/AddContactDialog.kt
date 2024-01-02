@@ -66,7 +66,7 @@ class AddContactDialog(
 
     private fun getContact(): Contact {
         var id: Long = 1111
-        var contact = Contact(
+        val contact = Contact(
             id = id,
             photo = photoLink,
             name = binding.usernameEdit.text.toString(),
