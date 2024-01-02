@@ -22,7 +22,7 @@ class ContactsActivity : AppCompatActivity(), AddContactInterface {
     private lateinit var binding: ContactsBinding
     private lateinit var adapter: ContactsAdapter
     val viewModel: ContactViewModel by viewModels {
-        ContactViewModelFactory(ContactsRepository()) //todo  ContactsRepository() ???
+        ContactViewModelFactory(ContactsRepository())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
