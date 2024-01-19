@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fon"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/button_white"
+        android:padding="@dimen/padding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/google"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_big"
+        android:layout_marginEnd="99dp"
+        app:layout_constraintBottom_toBottomOf="@id/fon"
+        app:layout_constraintEnd_toEndOf="@+id/fon"
+        app:layout_constraintStart_toEndOf="@id/ic_google"
+        app:layout_constraintTop_toTopOf="@id/fon"
+        app:layout_constraintVertical_bias="0.444" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ic_google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="99dp"
+        android:background="@drawable/ic_google"
+        app:layout_constraintBottom_toBottomOf="@+id/fon"
+        app:layout_constraintEnd_toStartOf="@+id/txt_google"
+        app:layout_constraintStart_toStartOf="@+id/fon"
+        app:layout_constraintTop_toTopOf="@+id/fon" />
+
+
+</merge>

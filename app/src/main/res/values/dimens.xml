@@ -2,7 +2,14 @@
 <resources>
     <dimen name="_22dp">22dp</dimen>
     <dimen name="padding">16dp</dimen>
-    <dimen name="text_size_name">30sp</dimen>
-    <dimen name="text_size_position">20sp</dimen>
+
+<!--    Text dimens-->
+    <dimen name="text_size_xl">30sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
     <dimen name="text_size_big">25sp</dimen>
+
+    <!--    Photo dimens-->
+    <dimen name="profile_main_photo_size">122dp</dimen>
+    <dimen name="but_size_social">66dp</dimen>
+
 </resources>

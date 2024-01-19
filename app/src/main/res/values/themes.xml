@@ -1,13 +1,44 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+
     <!-- Base application theme. -->
-
-
-    <style name="YR_Theme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="YR_Theme" parent="Theme.AppCompat.NoActionBar">
+        <!-- window Transitions-->
         <item name="android:windowContentTransitions">true</item>
-        <item name="android:windowEnterTransition">@android:transition/fade</item>
-        <item name="android:windowExitTransition">@android:transition/fade</item>
-        <item name="hintTextColor">@color/orange</item>
-        <item name="colorAccent">@color/orange</item>
+        <item name="android:windowEnterTransition">@android:transition/move</item>
+        <item name="android:windowExitTransition">@android:transition/move</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="hintTextColor">@color/gray</item>
+        <item name="colorPrimaryDark">@color/gray</item>  status bar
+        <item name="colorPrimary">@color/white</item>
+
+    </style>
+
+        <!-- for addContactDialog -->
+    <style name="DialogTheme" parent="YR_Theme">
+
+        <item name="android:textSize">@dimen/text_size_medium</item>
+
+        <!--Control coloring-->
+        <item name="android:colorBackground">@color/background</item> not work
+        <item name="android:colorForeground">@color/background</item>
+        <item name="colorControlNormal">@color/gray</item> normal line hint  +
+        <item name="colorControlActivated">@color/gray</item>  active line hint  +
+        <item name="android:editTextColor">@color/black</item> +
+        <item name="android:textColorHint">@color/gray</item> +
+         <item name="boxBackgroundColor">@color/orange</item> not work
+
+
+        <!--System properties-->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/gray</item>
+        <item name="materialAlertDialogTheme">@color/orange</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="hintTextColor">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:windowMinWidthMajor">97%</item>
+        <item name="android:windowMinWidthMinor">97%</item>
+
     </style>
 
 </resources>
