@@ -1,8 +1,9 @@
-package yurii.romanenko.shpp.ext
+package ua.shpp.yurom.ext
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-import yurii.romanenko.shpp.R
+import ua.shpp.yurrom.R
+
 
 fun ImageView.loadImage(url: String){
     Glide.with(this)

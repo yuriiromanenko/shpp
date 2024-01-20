@@ -1,13 +1,13 @@
-package yurii.romanenko.shpp.model
+package ua.shpp.yurom.model
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import yurii.romanenko.shpp.R
-import yurii.romanenko.shpp.databinding.ItemContactBinding
-import yurii.romanenko.shpp.ext.loadImage
+import ua.shpp.yurom.ext.loadImage
+import ua.shpp.yurrom.R
+import ua.shpp.yurrom.databinding.ItemContactBinding
 
 interface ContactActionListener {
     fun onUserDelete(contact: Contact)

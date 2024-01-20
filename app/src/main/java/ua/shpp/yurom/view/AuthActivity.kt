@@ -1,4 +1,4 @@
-package yurii.romanenko.shpp.view
+package ua.shpp.yurom.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,12 +7,12 @@ import android.util.Log
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import yurii.romanenko.shpp.R
-import yurii.romanenko.shpp.databinding.AuthLayoutBinding
-import yurii.romanenko.shpp.datastore.UserPreferences
-import yurii.romanenko.shpp.datastore.dataStore
-import yurii.romanenko.shpp.ext.firstCharToUpper
-import yurii.romanenko.shpp.utils.Validation
+import ua.shpp.yurom.datastore.UserPreferences
+import ua.shpp.yurom.datastore.dataStore
+import ua.shpp.yurom.ext.firstCharToUpper
+import ua.shpp.yurom.utils.Validation
+import ua.shpp.yurrom.R
+import ua.shpp.yurrom.databinding.AuthLayoutBinding
 
 class AuthActivity : AppCompatActivity() {
 

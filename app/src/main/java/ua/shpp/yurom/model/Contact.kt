@@ -1,4 +1,4 @@
-package yurii.romanenko.shpp.model
+package ua.shpp.yurom.model
 
 data class Contact (
     val id:Long,

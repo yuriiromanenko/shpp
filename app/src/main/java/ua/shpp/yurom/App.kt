@@ -1,7 +1,7 @@
-package yurii.romanenko.shpp
+package ua.shpp.yurom
 
 import android.app.Application
-import yurii.romanenko.shpp.model.ContactsRepository
+import ua.shpp.yurom.model.ContactsRepository
 
 class App:Application() {
     val contactsRepository = ContactsRepository()

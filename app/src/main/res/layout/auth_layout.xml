@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+   >
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/Lets_get"
@@ -76,7 +77,7 @@
            />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <yurii.romanenko.shpp.model.CustomGoogleButton
+    <ua.shpp.yurom.model.CustomGoogleButton
         android:id="@+id/button_google"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

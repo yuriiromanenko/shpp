@@ -1,4 +1,4 @@
-package yurii.romanenko.shpp.view
+package ua.shpp.yurom.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import yurii.romanenko.shpp.R
-import yurii.romanenko.shpp.databinding.ContactsBinding
-import yurii.romanenko.shpp.model.Contact
-import yurii.romanenko.shpp.model.ContactActionListener
-import yurii.romanenko.shpp.model.ContactsAdapter
-import yurii.romanenko.shpp.model.ContactsRepository
+import ua.shpp.yurom.model.Contact
+import ua.shpp.yurom.model.ContactActionListener
+import ua.shpp.yurom.model.ContactsAdapter
+import ua.shpp.yurom.model.ContactsRepository
+import ua.shpp.yurrom.R
+import ua.shpp.yurrom.databinding.ContactsBinding
 
 class ContactsActivity : AppCompatActivity(), AddContactInterface {
 

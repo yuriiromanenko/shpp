@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'yurii.romanenko.shpp'
+    namespace 'ua.shpp.yurrom'
     compileSdk 34
 
     buildFeatures {
@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "yurii.romanenko.shpp"
+        applicationId "ua.shpp.yurrom"
         minSdk 24
         targetSdk 34
         versionCode 1
@@ -53,6 +53,11 @@ dependencies {
     implementation 'com.github.javafaker:javafaker:1.0.2'
     implementation 'com.github.bumptech.glide:glide:4.15.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2'
+
+    // navigation fragment
+    implementation "androidx.navigation:navigation-fragment-ktx:2.7.6"
+    implementation "androidx.navigation:navigation-ui-ktx:2.7.6"
+    implementation "androidx.fragment:fragment-ktx:1.6.2"
 
 
 }

@@ -1,17 +1,15 @@
-package yurii.romanenko.shpp.view
+package ua.shpp.yurom.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.DialogFragment
-import com.bumptech.glide.Glide
-import yurii.romanenko.shpp.R
-import yurii.romanenko.shpp.databinding.AddContactDialogBinding
-import yurii.romanenko.shpp.model.Contact
+import ua.shpp.yurom.ext.loadImage
+import ua.shpp.yurom.model.Contact
+import ua.shpp.yurrom.databinding.AddContactDialogBinding
 
 interface AddContactInterface {
     fun addContact(contact: Contact)
@@ -40,7 +38,7 @@ class AddContactDialog(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         addContactInterface = requireActivity() as AddContactInterface
 
@@ -79,12 +77,3 @@ class AddContactDialog(
 
 }
 
-private fun ImageView.loadImage(photoLink: String) {
-    Glide.with(this)
-        .load(photoLink)
-        .circleCrop()
-        .placeholder(R.drawable.ic_add_photo)
-        .error(R.drawable.ic_add_photo)
-        .into(this)
-
-}

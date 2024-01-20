@@ -1,4 +1,4 @@
-package yurii.romanenko.shpp.datastore
+package ua.shpp.yurom.datastore
 
 import android.content.Context
 import androidx.datastore.core.DataStore

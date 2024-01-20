@@ -1,12 +1,12 @@
-package yurii.romanenko.shpp.view
+package ua.shpp.yurom.view
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import yurii.romanenko.shpp.model.Contact
-import yurii.romanenko.shpp.model.ContactsListener
-import yurii.romanenko.shpp.model.ContactsRepositoryInterface
+import ua.shpp.yurom.model.Contact
+import ua.shpp.yurom.model.ContactsListener
+import ua.shpp.yurom.model.ContactsRepositoryInterface
 
 class ContactViewModel(
     private val contactsRepository: ContactsRepositoryInterface

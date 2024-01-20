@@ -1,11 +1,11 @@
-package yurii.romanenko.shpp.model
+package ua.shpp.yurom.model
 
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
-import yurii.romanenko.shpp.R
+import ua.shpp.yurrom.R
 
 class CustomGoogleButton (context: Context, attrs: AttributeSet?)   : ConstraintLayout(context, attrs)  {
 
