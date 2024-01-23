@@ -1,35 +1,31 @@
 package ua.shpp.yurom.view
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.view.View
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import ua.shpp.yurom.datastore.UserPreferences
-import ua.shpp.yurom.datastore.dataStore
 import ua.shpp.yurom.ext.firstCharToUpper
 import ua.shpp.yurom.utils.Validation
 import ua.shpp.yurrom.R
 import ua.shpp.yurrom.databinding.AuthLayoutBinding
 
-class AuthActivity : AppCompatActivity() {
+class AuthView : Fragment(R.layout.auth_layout) {
 
-    private val binding: AuthLayoutBinding by lazy {
-        AuthLayoutBinding.inflate(layoutInflater)
-    }
+    private lateinit var binding: AuthLayoutBinding
 
-    private val userPreferences: UserPreferences by lazy {
-        UserPreferences(applicationContext.dataStore)
-    }
+    private lateinit var userPreferences: UserPreferences
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = AuthLayoutBinding.bind(view)
+        //userPreferences = UserPreferences(applicationContext.dataStore) todo
         setListeners()
-        autoLogin()
+        // autoLogin()
         validatesInput()
     }
 
@@ -38,16 +34,15 @@ class AuthActivity : AppCompatActivity() {
             userPreferences.checkFlow.collect { savedData ->
                 savedData?.let {
                     if (it) {
-                        startProfileActivity()
+                        startProfileView()
                     }
                 }
             }
         }
     }
 
-    private fun startProfileActivity() {
-        val intent = Intent(this, ProfileActivity::class.java)
-        startActivity(intent)
+    private fun startProfileView() {
+        findNavController().navigate(R.id.action_authView_to_profileView)
     }
 
     private fun setListeners() {
@@ -55,7 +50,6 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun validatesInput() {
-        Log.d("YRLOG", "validation")
         emailCheck()
         passwordCheck()
     }
@@ -92,9 +86,10 @@ class AuthActivity : AppCompatActivity() {
                 userPreferences.savePass(getPassword())
                 userPreferences.saveCheckBox(binding.checkBoxRememberMe.isChecked)
             }
-            startProfileActivity()
+            startProfileView()
         }
     }
+
     private fun getPassword() = binding.textEditPass.text.toString()
     private fun getEmail() = binding.textEditEmail.text.toString()
     private fun parseEmailToName(email: String): String {

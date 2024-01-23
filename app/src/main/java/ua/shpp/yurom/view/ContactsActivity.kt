@@ -80,7 +80,7 @@ class ContactsActivity : AppCompatActivity(), AddContactInterface {
         }
 
         binding.btnBack.setOnClickListener {
-            startActivity(Intent(this, ProfileActivity::class.java))
+            startActivity(Intent(this, ProfileView::class.java))
         }
     }
 
