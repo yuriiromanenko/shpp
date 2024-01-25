@@ -2,12 +2,14 @@ package ua.shpp.yurom.view
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import ua.shpp.yurom.datastore.UserPreferences
+import ua.shpp.yurom.datastore.dataStore
 import ua.shpp.yurom.ext.firstCharToUpper
 import ua.shpp.yurom.utils.Validation
 import ua.shpp.yurrom.R
@@ -19,13 +21,12 @@ class AuthView : Fragment(R.layout.auth_layout) {
 
     private lateinit var userPreferences: UserPreferences
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = AuthLayoutBinding.bind(view)
-        //userPreferences = UserPreferences(applicationContext.dataStore) todo
+        userPreferences =  UserPreferences(requireContext().dataStore)
         setListeners()
-        // autoLogin()
+        autoLogin()
         validatesInput()
     }
 
@@ -87,6 +88,8 @@ class AuthView : Fragment(R.layout.auth_layout) {
                 userPreferences.saveCheckBox(binding.checkBoxRememberMe.isChecked)
             }
             startProfileView()
+        } else {
+            Toast.makeText(requireContext(), R.string.email_not_valid, Toast.LENGTH_SHORT).show()
         }
     }
 

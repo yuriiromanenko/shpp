@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name="ua.shpp.yurom.view.ProfileView" />
-        <activity android:name="ua.shpp.yurom.view.ContactsActivity" />
+        <activity android:name="ua.shpp.yurom.view.Contacts" />
     </application>
 
 </manifest>

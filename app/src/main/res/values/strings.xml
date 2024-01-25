@@ -1,7 +1,7 @@
 <resources>
 
     <!--    profile activity-->
-    <string name="app_name" translatable="false">AAA</string>
+    <string name="app_name" translatable="false">3L_YR</string>
     <string name="name">Yurii Romanenko</string>
     <string name="position">Android Developer</string>
     <string name="my_address">Ukraine, Kiyv 04216</string>

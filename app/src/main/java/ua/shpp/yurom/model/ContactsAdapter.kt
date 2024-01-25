@@ -46,7 +46,6 @@ class ContactsAdapter(
         val binding = ItemContactBinding.inflate(inflater, parent, false)
         binding.root.setOnClickListener(this)
         binding.deleteButton.setOnClickListener(this)
-
         return ContactsViewHolder(binding)
     }
 

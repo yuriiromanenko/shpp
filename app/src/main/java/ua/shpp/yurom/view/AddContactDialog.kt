@@ -7,22 +7,23 @@ import android.view.ViewGroup
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import ua.shpp.yurom.ext.loadImage
 import ua.shpp.yurom.model.Contact
+import ua.shpp.yurom.model.ContactsRepository
 import ua.shpp.yurrom.databinding.AddContactDialogBinding
 
-interface AddContactInterface {
-    fun addContact(contact: Contact)
-}
 
-class AddContactDialog(
-) : DialogFragment() {
-
+class AddContactDialog() : DialogFragment() {
+   // private var id = 1111
     private val binding: AddContactDialogBinding by lazy {
         AddContactDialogBinding.inflate(layoutInflater)
     }
 
-    private lateinit var addContactInterface: AddContactInterface
+    val viewModel: ContactViewModel by viewModels {
+        ContactViewModelFactory(ContactsRepository())
+    }
+
     private var photoLink = ""
     private val pickMedia =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
@@ -40,7 +41,6 @@ class AddContactDialog(
         savedInstanceState: Bundle?
     ): View {
 
-        addContactInterface = requireActivity() as AddContactInterface
 
         with(binding) {
 
@@ -50,7 +50,7 @@ class AddContactDialog(
 
             btnSave.setOnClickListener {
                 val contact: Contact = getContact()
-                addContactInterface.addContact(contact)
+                viewModel.addContact(contact)
                 dismiss()
             }
 
@@ -63,16 +63,20 @@ class AddContactDialog(
     }
 
     private fun getContact(): Contact {
-        var id: Long = 1111
+
         val contact = Contact(
-            id = id,
+            id = 1111 /*id.toLong()*/,
             photo = photoLink,
             name = binding.usernameEdit.text.toString(),
             company = binding.careerEdit.text.toString()
         )
-        id++
+      //  id++
         return contact
     }
+    companion object {
+        const val ADD_CONTACT_DIALOG = "AddContactDialog"
+    }
+
 
 
 }

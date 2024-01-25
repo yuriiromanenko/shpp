@@ -4,9 +4,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-
     app:startDestination="@+id/authView">
 
+    <fragment
+        android:id="@+id/testFrag"
+        android:name="ua.shpp.yurom.view.TestFrag"
+        android:label="test_frag"
+        tools:layout="@layout/test_frag" />
+
+    <fragment
+        android:id="@+id/authView"
+        android:name="ua.shpp.yurom.view.AuthView"
+        android:label="auth_layout"
+        tools:layout="@layout/auth_layout" >
+        <action
+            android:id="@+id/action_authView_to_profileView"
+            app:destination="@id/profileView" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileView"
+        android:name="ua.shpp.yurom.view.ProfileView"
+        android:label="profile_layout"
+        tools:layout="@layout/profile_layout" >
+        <action
+            android:id="@+id/action_profileView_to_contacts"
+            app:destination="@id/contacts2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/contacts2"
+        android:name="ua.shpp.yurom.view.Contacts"
+        android:label="contacts"
+        tools:layout="@layout/contacts" />
+    <dialog
+        android:id="@+id/addContactDialog"
+        android:name="ua.shpp.yurom.view.AddContactDialog"
+        android:label="add_contact_dialog"
+        tools:layout="@layout/add_contact_dialog" />
 
     <fragment
         android:id="@+id/detailFragment"
@@ -17,23 +52,5 @@
             android:id="@+id/action_detailFragment_to_testFrag"
             app:destination="@id/testFrag" />
     </fragment>
-    <fragment
-        android:id="@+id/testFrag"
-        android:name="ua.shpp.yurom.view.TestFrag"
-        android:label="test_frag"
-        tools:layout="@layout/test_frag" />
-    <fragment
-        android:id="@+id/authView"
-        android:name="ua.shpp.yurom.view.AuthView"
-        android:label="auth_layout"
-        tools:layout="@layout/auth_layout" >
-        <action
-            android:id="@+id/action_authView_to_profileView"
-            app:destination="@id/profileView" />
-    </fragment>
-    <fragment
-        android:id="@+id/profileView"
-        android:name="ua.shpp.yurom.view.ProfileView"
-        android:label="profile_layout"
-        tools:layout="@layout/profile_layout" />
+
 </navigation>

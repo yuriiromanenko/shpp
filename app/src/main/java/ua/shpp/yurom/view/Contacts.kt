@@ -1,11 +1,15 @@
 package ua.shpp.yurom.view
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,18 +21,25 @@ import ua.shpp.yurom.model.ContactsRepository
 import ua.shpp.yurrom.R
 import ua.shpp.yurrom.databinding.ContactsBinding
 
-class ContactsActivity : AppCompatActivity(), AddContactInterface {
+class Contacts : Fragment(R.layout.contacts){
 
     private lateinit var binding: ContactsBinding
     private lateinit var adapter: ContactsAdapter
-    val viewModel: ContactViewModel by viewModels {
+    private val viewModel: ContactViewModel by viewModels {
         ContactViewModelFactory(ContactsRepository())
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ContactsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+//    override fun onCreateView(
+//        inflater: LayoutInflater,
+//        container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View? {
+//        return super.onCreateView(inflater, container, savedInstanceState)
+//    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = ContactsBinding.bind(view)
 
         initAdapter()
         initLiveData()
@@ -38,9 +49,9 @@ class ContactsActivity : AppCompatActivity(), AddContactInterface {
     }
 
     private fun initLiveData() {
-        viewModel.contactsLive.observe(this) {
+        viewModel.contactsLive.observe(viewLifecycleOwner, Observer {
             adapter.contacts = it
-        }
+        })
     }
 
     private fun initTouchHelper() {
@@ -66,7 +77,7 @@ class ContactsActivity : AppCompatActivity(), AddContactInterface {
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager( requireContext())
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapter
     }
@@ -80,7 +91,7 @@ class ContactsActivity : AppCompatActivity(), AddContactInterface {
         }
 
         binding.btnBack.setOnClickListener {
-            startActivity(Intent(this, ProfileView::class.java))
+           findNavController().navigateUp()
         }
     }
 
@@ -89,9 +100,8 @@ class ContactsActivity : AppCompatActivity(), AddContactInterface {
             object : ContactActionListener {
                 override fun onUserDelete(contact: Contact) {
                     viewModel.deleteContact(contact)
-                    // contactsRepository.deleteContact(contact)
                     Toast.makeText(
-                        this@ContactsActivity,
+                        requireContext(),
                         "contact ${contact.name} has been removed",
                         Toast.LENGTH_SHORT
                     ).show()
@@ -99,7 +109,7 @@ class ContactsActivity : AppCompatActivity(), AddContactInterface {
 
                 override fun onUserProfile(contact: Contact) {
                     Toast.makeText(
-                        this@ContactsActivity,
+                        requireContext(),
                         "Contact: ${contact.name}",
                         Toast.LENGTH_SHORT
                     ).show()
@@ -109,10 +119,11 @@ class ContactsActivity : AppCompatActivity(), AddContactInterface {
     }
 
     private fun showDialog() {
-        val fragmentManager = supportFragmentManager
-        val dialog = AddContactDialog()
-        dialog.setStyle(DialogFragment.STYLE_NO_TITLE, R.style.DialogTheme)
-        dialog.show(fragmentManager, ADD_CONTACT_DIALOG)
+        val dialogFragment  = AddContactDialog()
+        dialogFragment .setStyle(DialogFragment.STYLE_NO_TITLE, R.style.DialogTheme)
+
+        dialogFragment.show(parentFragmentManager, AddContactDialog.ADD_CONTACT_DIALOG)
+        //  findNavController().navigate(R.id.action_contacts2_to_addContactDialog)
     }
 
     private fun undoDelete() {
@@ -128,12 +139,9 @@ class ContactsActivity : AppCompatActivity(), AddContactInterface {
     }
 
 
-    companion object {
-        const val ADD_CONTACT_DIALOG = "AddContactDialog"
-    }
-
-    override fun addContact(contact: Contact) {
-        viewModel.addContact(contact)
-       // contactsRepository.addContact(contact, contactsRepository.getSizeContacts())
-    }
+// TODO:  
+//    override fun addContact(contact: Contact) {
+//        viewModel.addContact(contact)
+//       // contactsRepository.addContact(contact, contactsRepository.getSizeContacts())
+//    }
 }

@@ -45,9 +45,7 @@ class ContactsRepository : ContactsRepositoryInterface {
     override fun addContact(contact: Contact, index: Int) {
         contacts = ArrayList(contacts)
         contacts.add(index, contact)
-        addListener { } //todo  addListener?
-       notifyChanges()
-
+        notifyChanges()
     }
 
     override fun deleteContact(contact: Contact) {
