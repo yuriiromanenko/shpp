@@ -37,6 +37,9 @@ class Contacts : Fragment(R.layout.contacts){
 //        return super.onCreateView(inflater, container, savedInstanceState)
 //    }
 
+
+    // TODO: test rollback 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = ContactsBinding.bind(view)
