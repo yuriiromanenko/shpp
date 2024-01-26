@@ -7,12 +7,6 @@
     app:startDestination="@+id/authView">
 
     <fragment
-        android:id="@+id/testFrag"
-        android:name="ua.shpp.yurom.view.TestFrag"
-        android:label="test_frag"
-        tools:layout="@layout/test_frag" />
-
-    <fragment
         android:id="@+id/authView"
         android:name="ua.shpp.yurom.view.AuthView"
         android:label="auth_layout"
@@ -36,21 +30,30 @@
         android:id="@+id/contacts2"
         android:name="ua.shpp.yurom.view.Contacts"
         android:label="contacts"
-        tools:layout="@layout/contacts" />
-    <dialog
-        android:id="@+id/addContactDialog"
-        android:name="ua.shpp.yurom.view.AddContactDialog"
-        android:label="add_contact_dialog"
-        tools:layout="@layout/add_contact_dialog" />
+        tools:layout="@layout/contacts" >
+        <action
+            android:id="@+id/action_contacts2_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/detailFragment"
         android:name="ua.shpp.yurom.view.DetailFragment"
         android:label="detail_view_fragment"
-        tools:layout="@layout/detail_view_fragment" >
-        <action
-            android:id="@+id/action_detailFragment_to_testFrag"
-            app:destination="@id/testFrag" />
+        tools:layout="@layout/detail_view_layout" >
+        <argument
+            android:name="name_contact"
+            app:argType="string"
+            app:nullable="true" />
+        <argument android:name="photo_contact" />
+        <argument
+            android:name="address_contact"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="positionContact"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 
 </navigation>

@@ -45,4 +45,8 @@
     <string name="google" translatable="false">GOOGLE</string>
     <string name="name_user" translatable="false">Firstname Lastname</string>
     <string name="career_user" translatable="false">Android Developer</string>
+    <string name="profile_detail_view">Profile</string>
+    <string name="contact_name">Contact name</string>
+    <string name="message">" Message"</string>
+    <string name="add_my_contacts">add to my contacts</string>
 </resources>

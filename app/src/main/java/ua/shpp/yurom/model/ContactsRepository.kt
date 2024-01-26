@@ -15,7 +15,7 @@ interface ContactsRepositoryInterface {
     fun removeListener(listener: ContactsListener)
 }
 
-class ContactsRepository : ContactsRepositoryInterface {
+public class ContactsRepository : ContactsRepositoryInterface {
 
 
     private val listeners = mutableListOf<ContactsListener>()
@@ -35,8 +35,9 @@ class ContactsRepository : ContactsRepositoryInterface {
                 Contact(
                     id = it.toLong(),
                     name = faker.name().name(),
-                    company = faker.company().name(),
-                    photo = IMAGES[it % IMAGES.size]
+                    position = faker.job().position(),
+                    photo = IMAGES[it % IMAGES.size],
+                    address = faker.address().cityName()
                 )
             }.toMutableList()
         }
@@ -45,7 +46,7 @@ class ContactsRepository : ContactsRepositoryInterface {
     override fun addContact(contact: Contact, index: Int) {
         contacts = ArrayList(contacts)
         contacts.add(index, contact)
-        notifyChanges()
+        // notifyChanges()
     }
 
     override fun deleteContact(contact: Contact) {
@@ -90,11 +91,16 @@ class ContactsRepository : ContactsRepositoryInterface {
 
 
     companion object {
+        public fun getNewID(): Long {
+            return contacts.size.toLong() + 1
+        }
+
         private var contacts = mutableListOf<Contact>()
         private val IMAGES = mutableListOf<String>()
     }
 
 }
+
 
 class LastDeletedContact(
     var position: Int,

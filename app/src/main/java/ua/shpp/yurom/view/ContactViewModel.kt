@@ -47,15 +47,9 @@ class ContactViewModel(
     fun deleteContact(contact: Contact) {
     contactsRepository.deleteContact(contact)
     }
-
-
-
-
 }
 
-/**
- *   Factory
- */
+
 class ContactViewModelFactory(private val contactsRepositoryInterface: ContactsRepositoryInterface) :
     ViewModelProvider.Factory {
 // todo  https://www.youtube.com/watch?v=bCH12ycXPeo  22:40

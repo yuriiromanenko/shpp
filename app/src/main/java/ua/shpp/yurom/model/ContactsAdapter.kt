@@ -55,7 +55,7 @@ class ContactsAdapter(
             holder.itemView.tag = user
             deleteButton.tag = user
             userNameTextView.text = user.name
-            userCompanyTextView.text = user.company
+            userCompanyTextView.text = user.position
             if (user.photo.isNotBlank()) {
                 photoImageView.loadImage(user.photo)
             } else {

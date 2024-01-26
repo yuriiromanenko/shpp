@@ -37,7 +37,6 @@ class ProfileView : Fragment(R.layout.profile_layout) {
     }
 
     private fun setListeners() {
-        binding.buttonEdit.setOnClickListener { }
         binding.btnViewMyContacts?.setOnClickListener { goMyContact() }
         binding.buttonLogout?.setOnClickListener { goAutuhActivity() }
     }

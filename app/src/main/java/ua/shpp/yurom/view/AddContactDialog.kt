@@ -14,13 +14,13 @@ import ua.shpp.yurom.model.ContactsRepository
 import ua.shpp.yurrom.databinding.AddContactDialogBinding
 
 
-class AddContactDialog() : DialogFragment() {
-   // private var id = 1111
+class AddContactDialog : DialogFragment() {
+
     private val binding: AddContactDialogBinding by lazy {
         AddContactDialogBinding.inflate(layoutInflater)
     }
 
-    val viewModel: ContactViewModel by viewModels {
+    private val viewModel: ContactViewModel by viewModels {
         ContactViewModelFactory(ContactsRepository())
     }
 
@@ -41,7 +41,6 @@ class AddContactDialog() : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
 
-
         with(binding) {
 
             btnAddPhoto.setOnClickListener {
@@ -50,7 +49,9 @@ class AddContactDialog() : DialogFragment() {
 
             btnSave.setOnClickListener {
                 val contact: Contact = getContact()
+
                 viewModel.addContact(contact)
+
                 dismiss()
             }
 
@@ -58,25 +59,22 @@ class AddContactDialog() : DialogFragment() {
                 dismiss()
             }
         }
-
         return binding.root
     }
 
     private fun getContact(): Contact {
-
-        val contact = Contact(
-            id = 1111 /*id.toLong()*/,
+        return Contact(
+            id = ContactsRepository.getNewID(),
             photo = photoLink,
             name = binding.usernameEdit.text.toString(),
-            company = binding.careerEdit.text.toString()
+            position = binding.careerEdit.text.toString(),
+            address = binding.addressEdit.text.toString(),
         )
-      //  id++
-        return contact
     }
+
     companion object {
         const val ADD_CONTACT_DIALOG = "AddContactDialog"
     }
-
 
 
 }

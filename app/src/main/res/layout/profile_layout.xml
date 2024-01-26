@@ -22,7 +22,7 @@
         android:layout_height="@dimen/profile_main_photo_size"
         android:scaleType="centerCrop"
         android:src="@drawable/photo_yuri"
-        app:layout_constraintBottom_toTopOf="@+id/button_edit"
+        app:layout_constraintBottom_toTopOf="@id/btn_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/photo_profile" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_settings"
+        android:id="@+id/text_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
@@ -97,7 +97,7 @@
         tools:ignore="MissingConstraints,TextContrastCheck" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_edit"
+        android:id="@+id/btn_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/padding"
@@ -160,7 +160,7 @@
         android:layout_marginBottom="@dimen/_22dp"
         android:background="@drawable/button_lin"
         android:contentDescription="LinkedIn"
-        app:layout_constraintBottom_toTopOf="@id/button_edit"
+        app:layout_constraintBottom_toTopOf="@id/btn_edit"
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintStart_toStartOf="parent"

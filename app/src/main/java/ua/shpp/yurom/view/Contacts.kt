@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,7 +20,7 @@ import ua.shpp.yurom.model.ContactsRepository
 import ua.shpp.yurrom.R
 import ua.shpp.yurrom.databinding.ContactsBinding
 
-class Contacts : Fragment(R.layout.contacts){
+class Contacts : Fragment(R.layout.contacts) {
 
     private lateinit var binding: ContactsBinding
     private lateinit var adapter: ContactsAdapter
@@ -29,32 +28,26 @@ class Contacts : Fragment(R.layout.contacts){
         ContactViewModelFactory(ContactsRepository())
     }
 
-//    override fun onCreateView(
-//        inflater: LayoutInflater,
-//        container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        return super.onCreateView(inflater, container, savedInstanceState)
-//    }
-
-
-    // TODO: test rollback 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding = ContactsBinding.bind(view)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = ContactsBinding.inflate(inflater)
 
         initAdapter()
-        initLiveData()
         initListeners()
         initRecyclerView()
         initTouchHelper()
+        initLiveData()
+
+        return binding.root
     }
 
     private fun initLiveData() {
-        viewModel.contactsLive.observe(viewLifecycleOwner, Observer {
+        viewModel.contactsLive.observe(viewLifecycleOwner) {
             adapter.contacts = it
-        })
+        }
     }
 
     private fun initTouchHelper() {
@@ -65,36 +58,33 @@ class Contacts : Fragment(R.layout.contacts){
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
             ): Boolean {
-                // this method is called
-                // when the item is moved.
                 return false
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.bindingAdapterPosition
                 viewModel.deleteContact(position)
-               // contactsRepository.deleteContactByIndex(position)
                 undoDelete()
             }
         }).attachToRecyclerView(binding.recyclerView)
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager( requireContext())
+        val layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapter
     }
 
     private fun initListeners() {
 
-       // contactsRepository.addListener(contactsListener)
+        // contactsRepository.addListener(contactsListener)
 
         binding.tvAddContact.setOnClickListener {
             showDialog()
         }
 
         binding.btnBack.setOnClickListener {
-           findNavController().navigateUp()
+            findNavController().navigateUp()
         }
     }
 
@@ -111,40 +101,36 @@ class Contacts : Fragment(R.layout.contacts){
                 }
 
                 override fun onUserProfile(contact: Contact) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Contact: ${contact.name}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    val name = contact.name
+                    val photo = contact.photo
+                    val company = contact.position
+                    val address = contact.address
+
+                    val directions = ContactsDirections.actionContacts2ToDetailFragment(
+                        name,
+                        photo,
+                        address,
+                        company
+                    )
+                    findNavController().navigate(directions)
+
                 }
             }
         )
     }
 
     private fun showDialog() {
-        val dialogFragment  = AddContactDialog()
-        dialogFragment .setStyle(DialogFragment.STYLE_NO_TITLE, R.style.DialogTheme)
-
+        val dialogFragment = AddContactDialog()
+        dialogFragment.setStyle(DialogFragment.STYLE_NO_TITLE, R.style.DialogTheme)
         dialogFragment.show(parentFragmentManager, AddContactDialog.ADD_CONTACT_DIALOG)
-        //  findNavController().navigate(R.id.action_contacts2_to_addContactDialog)
     }
 
     private fun undoDelete() {
-        Snackbar.make(binding.root, R.string.contact_deleted, Snackbar.LENGTH_LONG)
-            .setAction(getString(R.string.undo)) {
-                restoreContact()
-            }
+        Snackbar
+            .make(binding.root, R.string.contact_deleted, Snackbar.LENGTH_LONG)
+            .setAction(getString(R.string.undo)) { viewModel.restoreLastDeletedContact() }
+            .setActionTextColor(resources.getColor(R.color.orange))
             .show()
     }
 
-    private fun restoreContact() {
-       viewModel.restoreLastDeletedContact()
-    }
-
-
-// TODO:  
-//    override fun addContact(contact: Contact) {
-//        viewModel.addContact(contact)
-//       // contactsRepository.addContact(contact, contactsRepository.getSizeContacts())
-//    }
 }
