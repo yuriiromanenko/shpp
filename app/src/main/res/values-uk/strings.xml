@@ -1,18 +1,18 @@
 <resources>
-    <string name="name">Yurii Romanenko</string>
+<!--        Profile layout-->
+    <string name="name">Юрій Романенко</string>
     <string name="position">Android Developer</string>
-    <string name="address">Україна, Kиїв, 04216</string>
+    <string name="my_address">Україна, Kиїв, 04216</string>
     <string name="settings">Налаштування</string>
     <string name="view_my_contacts">мої контакти</string>
     <string name="edit_profile">Редагувати профіль</string>
     <string name="register">РЕГІСТРАЦІЯ</string>
-
+<!--        Auth layout-->
     <string name="fill_out_the_profile_and_go_to_the_application">Заповнюйте анкету та переходьте до заявки!</string>
     <string name="register_you_agree_terms">Натиснувши РЕГІСТРАЦІЯ Ви погоджуєтесь з нашими правилами</string>
     <string name="already_have_account">Маєш аккаунт? Заходь!</string>
-    <string name="remember_me">памятати мене</string>
-<!--    todo як написати апостроф?  -->
-    <string name="errorPass">Пароль має буди зі словом \"love\"</string>
+    <string name="remember_me">пам\`\ятати мене</string>
+    <string name="errorPass">Пароль має буди зі словом \"Love\"</string>
     <string name="or">чи</string>
     <string name="sign_in">Увійдіть</string>
     <string name="already_have_an_account">Вже маєте обліковий запис?</string>
@@ -20,4 +20,26 @@
     <string name="example_email">Наприклад: tom.kruz@mail.com</string>
     <string name="email">Пошта</string>
     <string name="let_s_get_acquainted">Давайте познайомимося</string>
+    <string name="email_not_valid">Не пошта</string>
+    <string name="photo_profile">Фото профілю</string>
+    <string name="password_must_contain">Пароль має бути більше 6 літер, велика та маленька, має цифру </string>
+    <string name="log_out">Вийти</string>
+    <string name="add_contacts">додати контакт</string>
+    <string name="back">назад</string>
+    <string name="contacts">Контакти</string>
+    <string name="contact_deleted">Контакт був видалений</string>
+    <string name="undo">повернути</string>
+    <string name="user_name">Ім\'я</string>
+    <string name="add_contact">Додати контакт</string>
+    <string name="profile_photo">Фото профіля</string>
+    <string name="save">зберегти</string>
+    <string name="career">Робота</string>
+    <string name="add_photo">Додати фото</string>
+    <string name="phone">Телефон</string>
+    <string name="date_of_birth">Дата народження</string>
+    <string name="address">Адреса</string>
+    <string name="profile_detail_view">Profile</string>
+    <string name="contact_name">Ім\'я контакту</string>
+    <string name="message">Повідомлення</string>
+    <string name="add_my_contacts">Додати у контакти</string>
 </resources>

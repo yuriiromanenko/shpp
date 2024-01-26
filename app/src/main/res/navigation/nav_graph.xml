@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress ALL -->
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/authView">
+
+    <fragment
+        android:id="@+id/authView"
+        android:name="ua.shpp.yurom.view.AuthView"
+        android:label="auth_layout"
+        tools:layout="@layout/auth_layout" >
+        <action
+            android:id="@+id/action_authView_to_profileView"
+            app:destination="@id/profileView" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileView"
+        android:name="ua.shpp.yurom.view.ProfileView"
+        android:label="profile_layout"
+        tools:layout="@layout/profile_layout" >
+        <action
+            android:id="@+id/action_profileView_to_contacts"
+            app:destination="@id/contacts2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/contacts2"
+        android:name="ua.shpp.yurom.view.Contacts"
+        android:label="contacts"
+        tools:layout="@layout/contacts" >
+        <action
+            android:id="@+id/action_contacts2_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="ua.shpp.yurom.view.DetailFragment"
+        android:label="detail_view_fragment"
+        tools:layout="@layout/detail_view_layout" >
+        <argument
+            android:name="name_contact"
+            app:argType="string"
+            app:nullable="true" />
+        <argument android:name="photo_contact" />
+        <argument
+            android:name="address_contact"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="positionContact"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+</navigation>
