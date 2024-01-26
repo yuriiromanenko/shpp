@@ -15,7 +15,7 @@ interface ContactsRepositoryInterface {
     fun removeListener(listener: ContactsListener)
 }
 
-public class ContactsRepository : ContactsRepositoryInterface {
+class ContactsRepository : ContactsRepositoryInterface {
 
 
     private val listeners = mutableListOf<ContactsListener>()
@@ -91,7 +91,7 @@ public class ContactsRepository : ContactsRepositoryInterface {
 
 
     companion object {
-        public fun getNewID(): Long {
+        fun getNewID(): Long {
             return contacts.size.toLong() + 1
         }
 

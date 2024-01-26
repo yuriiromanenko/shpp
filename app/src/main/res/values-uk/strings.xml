@@ -39,4 +39,7 @@
     <string name="date_of_birth">Дата народження</string>
     <string name="address">Адреса</string>
     <string name="profile_detail_view">Profile</string>
+    <string name="contact_name">Ім\'я контакту</string>
+    <string name="message">Повідомлення</string>
+    <string name="add_my_contacts">Додати у контакти</string>
 </resources>
